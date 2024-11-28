@@ -6,11 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/23 01:30:31 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/11/28 01:28:54 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Include ft_atof in the libft repo 
+// Include ft_atof in the libft repo
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -33,13 +33,31 @@
 // Finally, find min, if above median, do ra, if below do rra
 
 # include "libft/include/libft.h"
+# include <limits.h>
+# include <stdbool.h>
 
 typedef struct s_stack
 {
-    int data;
-    struct s_stack *next;
-} t_stack;
+	int				nb;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
+    struct s_stack	*target_node;
+	struct s_stack	*next;
+    struct s_stack	*prev;
+}					t_stack;
 
-// why is this not getting pushed to the repo
+// Handle errors
+
+// Stack initialization
+
+// Node initialization
+
+// Stack utils
+
+// Commands
+
+// Algorithms
 
 #endif
