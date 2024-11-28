@@ -6,12 +6,9 @@
 #    By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 01:15:04 by cschnath          #+#    #+#              #
-#    Updated: 2024/11/23 01:26:48 by cschnath         ###   ########.fr        #
+#    Updated: 2024/11/28 01:28:21 by cschnath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# why is this not getting pushed to the repo
-
 
 NAME    = push_swap
 
