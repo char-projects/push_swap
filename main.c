@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/28 01:19:07 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:05:04 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,64 +33,6 @@
         // Check if the stack has more than three numbers
             // If more than three numbers, implement Turk algorithm
 // Utils: Error handling, operations(ra, rb, rr, rra, rrb, rrr, sa, sb, ss, pa, pb), stack length, last node, min max 
-
-void ft_init_a(t_stack **a, char **argv)
-{
-    int i;
-    long int nb;
-
-    i = 0;
-    while (argv[i])
-    {
-        if (!ft_is_number(argv[i]))
-            ft_error(a, NULL, NULL);
-        nb = ft_atol(argv[i]);
-        if (nb > INT_MAX || nb < INT_MIN || ft_is_duplicate(*a, nb))
-            ft_error(a, NULL, NULL);
-        ft_append_node(a, nb);
-        i++;
-    }
-}
-bool ft_is_sorted(t_stack *a)
-{
-    t_stack *tmp;
-
-    tmp = a;
-    while (tmp->next)
-    {
-        if (tmp->nb > tmp->next->nb)
-            return (false);
-        tmp = tmp->next;
-    }
-    return (true);
-}
-
-int ft_stack_len(t_stack *stack)
-{
-    int len;
-    t_stack *tmp;
-
-    len = 0;
-    tmp = stack;
-    while (tmp)
-    {
-        len++;
-        tmp = tmp->next;
-    }
-    return (len);
-}
-
-void ft_free_stack(t_stack **stack)
-{
-    t_stack *tmp;
-
-    while (*stack)
-    {
-        tmp = *stack;
-        *stack = (*stack)->next;
-        free(tmp);
-    }
-}
 
 int main(int argc, char **argv)
 {

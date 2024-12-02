@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/28 01:37:47 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:04:31 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,14 @@ typedef struct s_stack
     struct s_stack	*prev;
 }					t_stack;
 
-// Handle errors
-
-// Stack initialization
-
-// Node initialization
-
-// Stack utils
-
-// Commands
-
-// Algorithms
+void ft_free_stack(t_stack **stack);
+void ft_error(t_stack **a, t_stack **b, char **argv);
+bool ft_is_sorted(t_stack *a);
+bool ft_is_duplicate(t_stack *stack, long int nb);
+bool ft_is_number(char *str);
+void ft_init_a(t_stack **a, char **argv);
+int ft_stack_len(t_stack *stack);
+long ft_atol(const char *str);
+void ft_append_node(t_stack **stack, long int nb);
 
 #endif
