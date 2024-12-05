@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_1.c                                          :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 01:03:04 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/02 14:00:22 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/05 01:36:14 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,38 +44,58 @@ bool ft_is_duplicate(t_stack *stack, long int nb)
 
 bool ft_is_sorted(t_stack *a)
 {
-    t_stack *tmp;
-
-    tmp = a;
-    while (tmp->next)
+    if (!a)
+        return (1);
+    while (a->next)
     {
-        if (tmp->nb > tmp->next->nb)
+        if (a->nb > a->next->nb)
             return (false);
-        tmp = tmp->next;
+        a = a->next;
     }
     return (true);
 }
-
-void ft_error(t_stack **a, t_stack **b, char **argv)
+static int ft_wordcount(char const *s, char c)
 {
-    if (argv)
-        free(argv);
-    if (a)
-        ft_free_stack(a);
-    if (b)
-        ft_free_stack(b);
-    write(2, "Error\n", 6);
-    exit(EXIT_FAILURE);
+    int count;
+    bool i;
+
+    count = 0;
+    while (*s)
+    {
+        i = false;
+        while(*s == c)
+            s++;
+        while(*s != c && *s)
+        {
+            if (!i)
+            {    
+                count++;
+                i = true;
+            }
+            s++;
+        }
+    }
+    return (count);
 }
 
-void ft_free_stack(t_stack **stack)
+static char *ft_nextword(char *s, char c)
 {
-    t_stack *tmp;
-
-    while (*stack)
-    {
-        tmp = *stack;
-        *stack = (*stack)->next;
-        free(tmp);
-    }
+    static int index = 0;
+    char *word;
+    int len;
+    int i;
+    
+    len = 0;
+    i = 0;
+    while (s[index] == c)
+        index++;
+    while (s[index + len] != c && s[index + len])
+        len++;
+    word = malloc((size_t)len * sizeof(char) + 1);
+    if (!word)
+        return (NULL);
+    while ((s[index] != c) && s[index])
+        word[i++] = s[index++];
+    word[i] = '\0';
+    return (word);
 }

@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   node_stuff.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:05:20 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/02 14:05:37 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/05 01:37:27 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void ft_free_stack(t_stack **stack)
+{
+    t_stack *tmp;
+
+    while (*stack)
+    {
+        tmp = *stack;
+        *stack = (*stack)->next;
+        free(tmp);
+    }
+}
 
 void ft_append_node(t_stack **stack, long int nb)
 {
@@ -40,33 +52,10 @@ void ft_append_node(t_stack **stack, long int nb)
     }
 }
 
-long ft_atol(const char *str)
-{
-    long res;
-    int sign;
-
-    res = 0;
-    sign = 1;
-    while (*str == ' ' || (*str >= 9 && *str <= 13))
-        str++;
-    if (*str == '-' || *str == '+')
-    {
-        if (*str == '-')
-            sign = -1;
-        str++;
-    }
-    while (*str >= '0' && *str <= '9')
-    {
-        res = res * 10 + *str - '0';
-        str++;
-    }
-    return (res * sign);
-}
-
 void ft_init_a(t_stack **a, char **argv)
 {
     int i;
-    long int nb;
+    long nb;
 
     i = 0;
     while (argv[i])
