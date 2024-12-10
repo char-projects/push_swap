@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:36:13 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 23:37:42 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 00:06:11 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,12 @@ void	ft_rrr(t_stack **a, t_stack **b, bool print)
 	ft_rev_rotate(b);
 	if (!print)
 		ft_printf("rrr\n");
+}
+
+static void ft_rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
+{
+    while (*b != cheapest->target_node && *a != cheapest)
+        ft_rrr(a, b, false);
+    ft_index(*a);
+    ft_index(*b);
 }

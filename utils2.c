@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:11:16 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 23:29:16 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 00:04:28 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,6 @@ static void	ft_min_on_top(t_stack **a)
 		else
 			ft_rra(a, false);
 	}
-}
-
-// Done
-void	ft_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
-{
-	while (*b != cheapest->target_node && *a != cheapest)
-		ft_rr(a, b, false);
-	ft_index(*a);
-	ft_index(*b);
 }
 
 // Done
