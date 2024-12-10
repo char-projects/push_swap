@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/05 02:30:36 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:38:23 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,33 @@ static char			*ft_nextword(char *s, char c);
 void				ft_free_stack(t_stack **stack);
 void				ft_append_node(t_stack **stack, long int nb);
 void				ft_init_a(t_stack **a, char **argv);
+void				ft_init_nodes(t_stack *a, t_stack *b);
 int					ft_stack_len(t_stack *stack);
 
 // Sorting
 void				ft_sort_three(t_stack **a);
+void				ft_index(t_stack *stack);
+static void			ft_push_to_b(t_stack **a, t_stack **b);
+static void			ft_push_to_a(t_stack **a, t_stack **b);
 void				ft_sort_stacks(t_stack **a, t_stack **b);
 
 // Utils
 void				ft_error(t_stack **a, t_stack **b, char **argv);
 long				ft_atol(const char *str);
-t_stack				*find_min(t_stack *stack);
+t_stack				*ft_find_min(t_stack *stack);
+static void			ft_target_a(t_stack *a, t_stack *b);
+static void			ft_cost_analysis(t_stack *a, t_stack *b);
+
+// Utils 2
+void				ft_set_cheapest(t_stack *stack);
+static void			ft_min_on_top(t_stack **a);
+void				ft_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
+void				ft_rr(t_stack **a, t_stack **b, bool print);
+void				ft_prep_for_push(t_stack **stack, t_stack *top_node,
+						char c);
+
+// Utils 3
+static void			ft_target_b(t_stack *a, t_stack *b);
+void				ft_init_nodes_b(t_stack *a, t_stack *b);
 
 #endif

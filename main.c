@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/05 01:38:14 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:33:20 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,4 @@ int main(int argc, char **argv)
             ft_sort_stacks(&a, &b);
     }
     ft_free_stack(&a);
-}   
+}
