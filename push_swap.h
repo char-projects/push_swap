@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 13:38:23 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:52:48 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,17 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-// Checks
-bool				ft_is_number(char *str);
+// Do not include static functions in the header file
+
+// Main - DONE
+int					ft_error_duplicate(t_stack *a, int nb);
+
+// Checks - DONE
 bool				ft_is_duplicate(t_stack *stack, long int nb);
 bool				ft_is_sorted(t_stack *a);
-static int			ft_wordcount(char const *s, char c);
-static char			*ft_nextword(char *s, char c);
+void				ft_free_errors(t_stack **a);
+// static int			ft_wordcount(char const *s, char c);
+// static char			*ft_nextword(char *s, char c);
 
 // Node stuff
 void				ft_free_stack(t_stack **stack);
@@ -63,30 +68,33 @@ void				ft_init_a(t_stack **a, char **argv);
 void				ft_init_nodes(t_stack *a, t_stack *b);
 int					ft_stack_len(t_stack *stack);
 
-// Sorting
+// Sorting - DONE
 void				ft_sort_three(t_stack **a);
 void				ft_index(t_stack *stack);
-static void			ft_push_to_b(t_stack **a, t_stack **b);
-static void			ft_push_to_a(t_stack **a, t_stack **b);
+// static void			ft_push_to_b(t_stack **a, t_stack **b);
+// static void			ft_push_to_a(t_stack **a, t_stack **b);
 void				ft_sort_stacks(t_stack **a, t_stack **b);
 
-// Utils
-void				ft_error(t_stack **a, t_stack **b, char **argv);
+// Utils - DONE
+int					ft_error(char *argv);
 long				ft_atol(const char *str);
 t_stack				*ft_find_min(t_stack *stack);
-static void			ft_target_a(t_stack *a, t_stack *b);
-static void			ft_cost_analysis(t_stack *a, t_stack *b);
+// static void			ft_target_a(t_stack *a, t_stack *b);
+// static void			ft_cost_analysis(t_stack *a, t_stack *b);
 
-// Utils 2
+// Utils 2 - DONE
 void				ft_set_cheapest(t_stack *stack);
-static void			ft_min_on_top(t_stack **a);
+// static void			ft_min_on_top(t_stack **a);
 void				ft_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
 void				ft_rr(t_stack **a, t_stack **b, bool print);
 void				ft_prep_for_push(t_stack **stack, t_stack *top_node,
 						char c);
 
-// Utils 3
-static void			ft_target_b(t_stack *a, t_stack *b);
+// Utils 3 - DONE
+// static void			ft_target_b(t_stack *a, t_stack *b);
+void				ft_init_nodes_a(t_stack *a, t_stack *b);
 void				ft_init_nodes_b(t_stack *a, t_stack *b);
+char				**ft_new_split(char const *s, char c);
+t_stack				*ft_find_max(t_stack *stack);
 
 #endif

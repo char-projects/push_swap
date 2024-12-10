@@ -6,24 +6,28 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:38:33 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 13:31:26 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:27:12 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(t_stack **a, t_stack **b, char **argv)
+// Done
+int ft_error(char *argv)
 {
-	if (argv)
-		free(argv);
-	if (a)
-		ft_free_stack(a);
-	if (b)
-		ft_free_stack(b);
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	if (!(*argv == '+' || *argv == '-' || ft_isdigit(*argv)))
+		return (1);
+	if ((*argv == '+' || *argv == '-') && !ft_isdigit(argv[1]))
+		return (1);
+	while (*argv++)
+	{
+		if (!ft_isdigit(*argv))
+			return (1);
+	}
+	return (0);
 }
 
+// Done
 long	ft_atol(const char *str)
 {
 	long	res;
@@ -47,22 +51,28 @@ long	ft_atol(const char *str)
 	return (res * sign);
 }
 
+// Done
 t_stack	*ft_find_min(t_stack *stack)
 {
-	t_stack	*tmp;
-	t_stack	*min;
+	long min;
+	t_stack *min_node;
 
-	tmp = stack;
-	min = stack;
-	while (tmp)
+	if (!stack)
+		return (NULL);
+	min = LONG_MAX;
+	while (stack)
 	{
-		if (tmp->nb < min->nb)
-			min = tmp;
-		tmp = tmp->next;
+		if (stack->nb < min)
+		{
+			min = stack->nb;
+			min_node = stack;
+		}
+		stack = stack->next;
 	}
-	return (min);
+	return (min_node);
 }
 
+// Done
 static void	ft_target_a(t_stack *a, t_stack *b)
 {
 	t_stack	*current_b;
@@ -72,29 +82,25 @@ static void	ft_target_a(t_stack *a, t_stack *b)
 	while (a)
 	{
 		current_b = b;
-		best_match = INT_MAX;
+		best_match = LONG_MIN;
 		while (current_b)
 		{
-			best_match = LONG_MIN;
-			current_b = b;
-			while (current_b)
+			if (current_b->nb < a->nb && current_b->nb > best_match)
 			{
-				if (current_b->nb < a->nb && current_b->nb > best_match)
-				{
-					best_match = current_b->nb;
-					target = current_b;
-				}
-				current_b = current_b->next;
+				best_match = current_b->nb;
+				target = current_b;
 			}
-			if (best_match == LONG_MIN)
-				a->target_node = ft_find_max(b);
-			else
-				a->target_node = target;
-			a = a->next;
+			current_b = current_b->next;
 		}
+		if (best_match == LONG_MIN)
+			a->target_node = ft_find_max(b);
+		else
+			a->target_node = target;
+		a = a->next;
 	}
 }
 
+// Done
 static void	ft_cost_analysis(t_stack *a, t_stack *b)
 {
 	int	len_a;

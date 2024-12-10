@@ -6,59 +6,74 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:05:20 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 13:33:36 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:52:22 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Done
 void	ft_free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
+	t_stack *current;
 
-	while (*stack)
+	if (!stack)
+		return ;
+	current = *stack;
+	while (current)
 	{
-		tmp = *stack;
-		*stack = (*stack)->next;
-		free(tmp);
+		tmp = current->next;
+		current->nb = 0;
+		free(current);
+		current = tmp;
 	}
+	*stack = NULL;
 }
 
-void	ft_append_node(t_stack **stack, long int nb)
+// Done
+void	ft_append_node(t_stack **stack, int n)
 {
-	t_stack	*new;
-	t_stack	*tmp;
+	t_stack *node;
+	t_stack *last_node;
 
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		exit(EXIT_FAILURE);
-	new->nb = nb;
-	new->index = 0;
-	new->push_cost = 0;
-	new->above_median = false;
-	new->cheapest = false;
-	new->target_node = NULL;
-	new->next = NULL;
-	new->prev = NULL;
+	if (!stack)
+		return ;
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return ;
+	node->next = NULL;
+	node->nb = n;
 	if (!*stack)
-		*stack = new;
+	{
+		*stack = node;
+		node->prev = NULL;
+	}
 	else
 	{
-		tmp = *stack;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-		new->prev = tmp;
+		last_node = ft_last_node(*stack);
+		last_node->next = node;
+		node->prev = last_node;
 	}
 }
 
-void	ft_init_a(t_stack *a, t_stack *b)
+// Done
+void ft_init_a(t_stack **a, char **argv)
 {
-	ft_index(a);
-	ft_index(b);
-	ft_target_a(a, b);
-	ft_cost_analysis(a, b);
-	ft_set_cheapest(a);
+    int i;
+    long n;
+
+    i = 0;
+    while (argv[i])
+    {
+        if (ft_error(argv[i]))
+            ft_free_errors(a);
+        n = ft_atol(argv[i]);
+        if (n > INT_MAX || n < INT_MIN || ft_error_duplicate(*a, (int)n))
+            ft_free_errors(a);
+        ft_append_node(a, (int)n);
+        i++;
+    }
 }
 
 void	ft_init_nodes(t_stack *a, t_stack *b)
@@ -70,17 +85,18 @@ void	ft_init_nodes(t_stack *a, t_stack *b)
 	ft_set_cheapest(a);
 }
 
+// Done
 int	ft_stack_len(t_stack *stack)
 {
 	int		len;
-	t_stack	*tmp;
-
+	
+	if (!stack)
+		return (0);
 	len = 0;
-	tmp = stack;
-	while (tmp)
+	while (stack)
 	{
 		len++;
-		tmp = tmp->next;
+		stack = stack->next;
 	}
 	return (len);
 }

@@ -6,12 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:34:52 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 13:31:44 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:03:04 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Done
 void	ft_sort_three(t_stack **a)
 {
 	t_stack	*biggest;
@@ -25,6 +26,7 @@ void	ft_sort_three(t_stack **a)
 		ft_sa(a, false);
 }
 
+// Done
 void	ft_index(t_stack *stack)
 {
 	int	i;
@@ -46,6 +48,7 @@ void	ft_index(t_stack *stack)
 	}
 }
 
+// Done
 static void	ft_push_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest;
@@ -60,12 +63,14 @@ static void	ft_push_to_b(t_stack **a, t_stack **b)
 	ft_pb(b, a, false);
 }
 
+// Done
 static void	ft_push_to_a(t_stack **a, t_stack **b)
 {
 	ft_prep_for_push(a, (*b)->target_node, 'a');
 	ft_pa(a, b, false);
 }
 
+// Done
 void	ft_sort_stacks(t_stack **a, t_stack **b)
 {
 	int	len_a;

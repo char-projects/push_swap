@@ -6,28 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 01:03:04 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 13:29:12 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:31:13 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	ft_is_number(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
+// Done
 bool	ft_is_duplicate(t_stack *stack, long int nb)
 {
 	t_stack	*tmp;
@@ -42,6 +27,15 @@ bool	ft_is_duplicate(t_stack *stack, long int nb)
 	return (false);
 }
 
+// Done
+void ft_free_errors(t_stack **a)
+{
+	ft_free_stack(a);
+	ft_printf("Error\n");
+	exit(1);
+}
+
+// Done
 bool	ft_is_sorted(t_stack *a)
 {
 	if (!a)
@@ -55,6 +49,7 @@ bool	ft_is_sorted(t_stack *a)
 	return (true);
 }
 
+// Done
 static int	ft_wordcount(char const *s, char c)
 {
 	int		count;
@@ -79,6 +74,7 @@ static int	ft_wordcount(char const *s, char c)
 	return (count);
 }
 
+// Done
 static char	*ft_nextword(char *s, char c)
 {
 	static int	index = 0;

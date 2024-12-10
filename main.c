@@ -6,11 +6,9 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 13:33:20 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:52:33 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
 
 // Declare pointers to two data structures / linked lists, one for stack a and one for stack b
     // Set both pointers to NULL
@@ -34,6 +32,23 @@
             // If more than three numbers, implement Turk algorithm
 // Utils: Error handling, operations(ra, rb, rr, rra, rrb, rrr, sa, sb, ss, pa, pb), stack length, last node, min max 
 
+#include "push_swap.h"
+
+// Done
+int ft_error_duplicate(t_stack *a, int nb)
+{
+    if (!a)
+        return (0);
+    while (a)
+    {
+        if (a->nb == nb)
+            return (1);
+        a = a->next;
+    }
+    return (0);
+}
+
+// Done
 int main(int argc, char **argv)
 {
     t_stack *a;
@@ -44,7 +59,7 @@ int main(int argc, char **argv)
     if (argc < 2 || ( argc == 2 && !argv[1][0]))
         exit(EXIT_FAILURE);
     else if (argc == 2)
-        argv = ft_split(argv[1], ' ');
+        argv = ft_new_split(argv[1], ' ');
     ft_init_a(&a, argv + 1);
     if (!ft_is_sorted(a))
     {

@@ -6,12 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:11:16 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 13:28:08 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/10 22:06:36 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Done
 void	ft_set_cheapest(t_stack *stack)
 {
 	long	cheapest;
@@ -32,6 +33,7 @@ void	ft_set_cheapest(t_stack *stack)
 	cheapest_node->cheapest = true;
 }
 
+// Done
 static void	ft_min_on_top(t_stack **a)
 {
 	while ((*a)->nb != ft_find_min(*a)->nb)
@@ -43,6 +45,7 @@ static void	ft_min_on_top(t_stack **a)
 	}
 }
 
+// Done
 void	ft_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	while (*b != cheapest->target_node && *a != cheapest)
@@ -51,6 +54,7 @@ void	ft_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest)
 	ft_index(*b);
 }
 
+// Done
 void	ft_rr(t_stack **a, t_stack **b, bool print)
 {
 	ft_rotate(a);
@@ -59,6 +63,7 @@ void	ft_rr(t_stack **a, t_stack **b, bool print)
 		ft_printf("rr\n");
 }
 
+// Done
 void	ft_prep_for_push(t_stack **stack, t_stack *top_node, char c)
 {
 	while (*stack != top_node)
