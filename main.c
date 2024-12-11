@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 13:26:33 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 21:46:07 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,32 @@
 // Utils: Error handling, operations(ra, rb, rr, rra, rrb, rrr, sa, sb, ss, pa, pb), stack length, last node, min max 
 
 #include "push_swap.h"
+
+// Done
+static void	ft_append_node(t_stack **stack, int n)
+{
+	t_stack *node;
+	t_stack *last_node;
+
+	if (!stack)
+		return ;
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return ;
+	node->next = NULL;
+	node->nb = n;
+	if (!*stack)
+	{
+		*stack = node;
+		node->prev = NULL;
+	}
+	else
+	{
+		last_node = ft_find_last(*stack);
+		last_node->next = node;
+		node->prev = last_node;
+	}
+}
 
 // Done
 void ft_init_a(t_stack **a, char **argv)

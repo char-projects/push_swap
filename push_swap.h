@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 13:43:47 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:03:18 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,11 @@ void				ft_init_nodes(t_stack *a, t_stack *b);
 void				ft_init_nodes_b(t_stack *a, t_stack *b);
 // static void			ft_target_b(t_stack *a, t_stack *b);
 void				ft_init_a(t_stack **a, char **argv);
+// static void			ft_append_node(t_stack **stack, int nb);
 
-// Sorting - DONE
+// Sort - DONE
 void				ft_sort_three(t_stack **a);
 void				ft_index(t_stack *stack);
-void				ft_sort_stacks(t_stack **a, t_stack **b);
-void				ft_append_node(t_stack **stack, long int nb);
 int					ft_stack_len(t_stack *stack);
 
 // Swap - DONE
@@ -102,8 +101,9 @@ void				ft_rr(t_stack **a, t_stack **b, bool print);
 // Switch - DONE
 // static void 			ft_rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
 // static void			ft_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest);
-// static void			ft_push_to_a(t_stack **a, t_stack **b);
 // static void			ft_push_to_b(t_stack **a, t_stack **b);
+// static void			ft_min_on_top(t_stack **a);
+void				ft_sort_stacks(t_stack **a, t_stack **b);
 
 // Rev rotate - DONE
 // static void 			ft_rev_rotate(t_stack **stack);
@@ -120,7 +120,6 @@ t_stack				*ft_find_last(t_stack *stack);
 // Utils 2 - DONE
 void				ft_set_cheapest(t_stack *stack);
 t_stack 			*ft_find_cheapest(t_stack *stack);
-// static void			ft_min_on_top(t_stack **a);
 void				ft_prep_for_push(t_stack **stack, t_stack *top_node,
 						char c);
 
