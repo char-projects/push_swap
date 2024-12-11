@@ -1,34 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node_stuff.c                                       :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 14:05:20 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 22:52:22 by cschnath         ###   ########.fr       */
+/*   Created: 2024/12/05 01:34:52 by cschnath          #+#    #+#             */
+/*   Updated: 2024/12/11 12:55:19 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Done
-void	ft_free_stack(t_stack **stack)
+void	ft_sort_three(t_stack **a)
 {
-	t_stack	*tmp;
-	t_stack *current;
+	t_stack	*biggest;
 
+	biggest = find_max(*a);
+	if (biggest == *a)
+		ft_ra(a, false);
+	else if ((*a)->next == biggest)
+		ft_rra(a, false);
+	if ((*a)->nb > (*a)->next->nb)
+		ft_sa(a, false);
+}
+
+// Done
+void	ft_index(t_stack *stack)
+{
+	int	i;
+	int	median;
+
+	i = 0;
 	if (!stack)
 		return ;
-	current = *stack;
-	while (current)
+	median = ft_stack_len(stack) / 2;
+	while (stack)
 	{
-		tmp = current->next;
-		current->nb = 0;
-		free(current);
-		current = tmp;
+		stack->index = i;
+		if (i <= median)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		i++;
 	}
-	*stack = NULL;
+}
+
+// Done
+void	ft_sort_stacks(t_stack **a, t_stack **b)
+{
+	int	len_a;
+
+	if (len_a-- < 3 && !ft_is_sorted(*a))
+		ft_pb(b, a, false);
+	if (len_a-- < 3 && !ft_is_sorted(*a))
+		ft_pb(b, a, false);
+	while (len_a-- > 3 && !ft_is_sorted(*a))
+	{
+		ft_init_a(*a, *b);
+		ft_push_to_b(a, b);
+	}
+	ft_sort_three(a);
+	while (*b)
+	{
+		ft_init_b(*a, *b);
+		ft_push_to_a(a, b);
+	}
+	ft_index(*a);
+	ft_min_on_top(a);
 }
 
 // Done
@@ -55,34 +96,6 @@ void	ft_append_node(t_stack **stack, int n)
 		last_node->next = node;
 		node->prev = last_node;
 	}
-}
-
-// Done
-void ft_init_a(t_stack **a, char **argv)
-{
-    int i;
-    long n;
-
-    i = 0;
-    while (argv[i])
-    {
-        if (ft_error(argv[i]))
-            ft_free_errors(a);
-        n = ft_atol(argv[i]);
-        if (n > INT_MAX || n < INT_MIN || ft_error_duplicate(*a, (int)n))
-            ft_free_errors(a);
-        ft_append_node(a, (int)n);
-        i++;
-    }
-}
-
-void	ft_init_nodes(t_stack *a, t_stack *b)
-{
-	ft_index(a);
-	ft_index(b);
-	ft_target_a(a, b);
-	ft_cost_analysis(a, b);
-	ft_set_cheapest(a);
 }
 
 // Done

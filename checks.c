@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 01:03:04 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 22:31:13 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:52:16 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ bool	ft_is_duplicate(t_stack *stack, long int nb)
 		tmp = tmp->next;
 	}
 	return (false);
-}
-
-// Done
-void ft_free_errors(t_stack **a)
-{
-	ft_free_stack(a);
-	ft_printf("Error\n");
-	exit(1);
 }
 
 // Done
@@ -95,4 +87,34 @@ static char	*ft_nextword(char *s, char c)
 		word[i++] = s[index++];
 	word[i] = '\0';
 	return (word);
+}
+
+// Done
+char **ft_new_split(char const *s, char c)
+{
+	int count;
+	char **res;
+	int i;
+
+	i = 0;
+	count = ft_wordcount(s, c);
+	if (!count)
+		exit(EXIT_FAILURE);
+	res = malloc(sizeof(char *) * (size_t)(count + 2));
+	if (!res)
+		return (NULL);
+	while (count-- >= 0)
+	{
+		if (i == 0)
+		{
+			res[i] = malloc(sizeof(char));
+			if (!res[i])
+				return (NULL);
+			res[i++][0] = '\0';
+			continue ; // Wtf is this?
+		}
+		res[i++] = ft_nextword(s, c);
+	}
+	res[i] = NULL;
+	return (res);
 }

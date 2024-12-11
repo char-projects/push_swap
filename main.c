@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 22:52:33 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:42:22 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,6 @@
 // Utils: Error handling, operations(ra, rb, rr, rra, rrb, rrr, sa, sb, ss, pa, pb), stack length, last node, min max 
 
 #include "push_swap.h"
-
-// Done
-int ft_error_duplicate(t_stack *a, int nb)
-{
-    if (!a)
-        return (0);
-    while (a)
-    {
-        if (a->nb == nb)
-            return (1);
-        a = a->next;
-    }
-    return (0);
-}
 
 // Done
 int main(int argc, char **argv)

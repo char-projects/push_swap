@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:11:16 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 00:04:28 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:54:30 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,26 @@ void	ft_prep_for_push(t_stack **stack, t_stack *top_node, char c)
 			else
 				ft_rrb(stack, false);
 		}
+	}
+}
+
+// Done
+static void	ft_cost_analysis(t_stack *a, t_stack *b)
+{
+	int	len_a;
+	int	len_b;
+
+	len_a = ft_stack_len(a);
+	len_b = ft_stack_len(b);
+	while (a)
+	{
+		a->push_cost = a->index;
+		if (!(a->above_median))
+			a->push_cost = len_b - (a->index);
+		if (!(a->target_node->above_median))
+			a->push_cost += a->target_node->index;
+		else
+			a->push_cost += len_b - (a->target_node->index);
+		a = a->next;
 	}
 }
