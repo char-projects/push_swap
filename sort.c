@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:34:52 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 12:55:19 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:44:40 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_sort_three(t_stack **a)
 {
 	t_stack	*biggest;
 
-	biggest = find_max(*a);
+	biggest = ft_find_max(*a);
 	if (biggest == *a)
 		ft_ra(a, false);
 	else if ((*a)->next == biggest)

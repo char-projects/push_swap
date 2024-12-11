@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:38:33 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 12:54:22 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:44:03 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,58 +78,11 @@ t_stack *ft_find_max(t_stack *stack)
 	return (max_node);
 }
 
-// Done
-static void	ft_target_a(t_stack *a, t_stack *b)
+t_stack *ft_find_last(t_stack *stack)
 {
-	t_stack	*current_b;
-	t_stack	*target;
-	long	best_match;
-
-	while (a)
-	{
-		current_b = b;
-		best_match = LONG_MIN;
-		while (current_b)
-		{
-			if (current_b->nb < a->nb && current_b->nb > best_match)
-			{
-				best_match = current_b->nb;
-				target = current_b;
-			}
-			current_b = current_b->next;
-		}
-		if (best_match == LONG_MIN)
-			a->target_node = ft_find_max(b);
-		else
-			a->target_node = target;
-		a = a->next;
-	}
-}
-
-// Done
-static void	ft_target_b(t_stack *a, t_stack *b)
-{
-	t_stack	*current_a;
-	t_stack	*target_node;
-	long	best_match;
-
-	while (b)
-	{
-		best_match = LONG_MAX;
-		current_a = a;
-		while (current_a)
-		{
-			if (current_a->nb < b->nb && current_a->nb < best_match)
-			{
-				best_match = current_a->nb;
-				target_node = current_a;
-			}
-			current_a = current_a->next;
-		}
-		if (best_match == LONG_MAX)
-			b->target_node = ft_find_min(a);
-		else
-			b->target_node = target_node;
-		b = b->next;
-	}
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
 }

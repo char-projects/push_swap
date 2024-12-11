@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 12:42:22 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:26:33 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,61 @@
 // Utils: Error handling, operations(ra, rb, rr, rra, rrb, rrr, sa, sb, ss, pa, pb), stack length, last node, min max 
 
 #include "push_swap.h"
+
+// Done
+void ft_init_a(t_stack **a, char **argv)
+{
+    int i;
+    long n;
+
+    i = 0;
+    while (argv[i])
+    {
+        if (ft_error(argv[i]))
+            ft_free_errors(a);
+        n = ft_atol(argv[i]);
+        if (n > INT_MAX || n < INT_MIN || ft_error_duplicate(*a, (int)n))
+            ft_free_errors(a);
+        ft_append_node(a, (int)n);
+        i++;
+    }
+}
+
+// Done
+static void	ft_target_b(t_stack *a, t_stack *b)
+{
+	t_stack	*current_a;
+	t_stack	*target_node;
+	long	best_match;
+
+	while (b)
+	{
+		best_match = LONG_MAX;
+		current_a = a;
+		while (current_a)
+		{
+			if (current_a->nb < b->nb && current_a->nb < best_match)
+			{
+				best_match = current_a->nb;
+				target_node = current_a;
+			}
+			current_a = current_a->next;
+		}
+		if (best_match == LONG_MAX)
+			b->target_node = ft_find_min(a);
+		else
+			b->target_node = target_node;
+		b = b->next;
+	}
+}
+
+// Done
+void	ft_init_nodes_b(t_stack *a, t_stack *b)
+{
+	ft_index(a);
+	ft_index(b);
+	ft_target_b(a, b);
+}
 
 // Done
 int main(int argc, char **argv)

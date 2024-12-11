@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 01:03:04 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 12:52:16 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:07:09 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static char	*ft_nextword(char *s, char c)
 }
 
 // Done
-char **ft_new_split(char const *s, char c)
+char **ft_new_split(char *s, char c)
 {
 	int count;
 	char **res;
