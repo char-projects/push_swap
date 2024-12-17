@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:41:03 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 12:44:20 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:56:03 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,24 @@
 // Done
 int ft_error(char *argv)
 {
-	if (!(*argv == '+' || *argv == '-' || ft_isdigit(*argv)))
-		return (1);
-	if ((*argv == '+' || *argv == '-') && !ft_isdigit(argv[1]))
-		return (1);
-	while (*argv++)
-	{
-		if (!ft_isdigit(*argv))
-			return (1);
-	}
-	return (0);
+	if (!argv || *argv == '\0') // Check for null or empty string
+        return (1);
+    if (*argv == '+' || *argv == '-') // Skip leading + or -
+        argv++;
+    if (*argv == '\0') // Ensure there's at least one digit after +/-
+        return (1);
+    while (*argv)
+    {
+        if (!ft_isdigit(*argv)) // Validate each character is a digit
+            return (1);
+        argv++;
+    }
+    return (0); // Input is valid
 }
 
 // Done
 int ft_error_duplicate(t_stack *a, int nb)
 {
-    if (!a)
-        return (0);
     while (a)
     {
         if (a->nb == nb)
@@ -53,7 +54,6 @@ void	ft_free_stack(t_stack **stack)
 	while (current)
 	{
 		tmp = current->next;
-		current->nb = 0;
 		free(current);
 		current = tmp;
 	}

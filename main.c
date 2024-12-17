@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 21:46:07 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:04:52 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,12 @@ int main(int argc, char **argv)
 
     a = NULL;
     b = NULL;
-    if (argc < 2 || ( argc == 2 && !argv[1][0]))
-        exit(EXIT_FAILURE);
-    else if (argc == 2)
+    if (argc < 2 || (argc == 2 && !argv[1][0]))
+    {
+        ft_printf("Error\n");
+        return (1);
+    }
+    if (argc == 2)
         argv = ft_new_split(argv[1], ' ');
     ft_init_a(&a, argv + 1);
     if (!ft_is_sorted(a))
