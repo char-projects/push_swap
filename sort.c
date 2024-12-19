@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:34:52 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 21:44:04 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:32:36 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Done
+// This one works for sure
 void	ft_sort_three(t_stack **a)
 {
 	t_stack	*biggest;

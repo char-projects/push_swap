@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:15:10 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 13:39:26 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:30:59 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Done
+// This one works for sure
 static void	ft_push(t_stack **dst, t_stack **src)
 {
 	t_stack	*push;
