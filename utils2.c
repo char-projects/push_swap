@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 21:11:16 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 21:57:03 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 04:15:44 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Done
+// This one works for sure
 void	ft_set_cheapest(t_stack *stack)
 {
 	long	cheapest;
@@ -33,6 +33,7 @@ void	ft_set_cheapest(t_stack *stack)
 	cheapest_node->cheapest = true;
 }
 
+// This one works for sure
 t_stack *ft_find_cheapest(t_stack *stack)
 {
 	if (!stack)
@@ -46,7 +47,7 @@ t_stack *ft_find_cheapest(t_stack *stack)
 	return (NULL);
 }                                                                                                                                                        
 
-// Done
+// This one works for sure
 void	ft_prep_for_push(t_stack **stack, t_stack *top_node, char c)
 {
 	while (*stack != top_node)

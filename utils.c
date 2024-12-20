@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:38:33 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/20 03:37:17 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 04:16:45 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Done
+// This one works for sure
 long	ft_atol(const char *str)
 {
 	long	result;
@@ -34,7 +34,7 @@ long	ft_atol(const char *str)
 	return (result * sign);
 }
 
-// Done
+// This one works for sure
 t_stack	*ft_find_min(t_stack *stack)
 {
 	long min;

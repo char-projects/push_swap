@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/20 02:25:25 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 04:19:01 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 #include "push_swap.h"
 
-// Done
+// Fixed tiny missing thing
 static void	ft_append_node(t_stack **stack, int n)
 {
 	t_stack *node;
@@ -47,6 +47,7 @@ static void	ft_append_node(t_stack **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nb = n;
+    node->cheapest = 0;
 	if (!*stack)
 	{
 		*stack = node;
@@ -60,7 +61,7 @@ static void	ft_append_node(t_stack **stack, int n)
 	}
 }
 
-// Done
+// This one works for sure
 void ft_init_a(t_stack **a, char **argv)
 {
     int i;
@@ -79,7 +80,7 @@ void ft_init_a(t_stack **a, char **argv)
     }
 }
 
-// Done
+// Fixed this one
 static void	ft_target_b(t_stack *a, t_stack *b)
 {
 	t_stack	*current_a;
@@ -92,7 +93,7 @@ static void	ft_target_b(t_stack *a, t_stack *b)
 		current_a = a;
 		while (current_a)
 		{
-			if (current_a->nb < b->nb && current_a->nb < best_match)
+			if (current_a->nb > b->nb && current_a->nb < best_match)
 			{
 				best_match = current_a->nb;
 				target_node = current_a;
@@ -115,6 +116,14 @@ void	ft_init_nodes_b(t_stack *a, t_stack *b)
 	ft_target_b(a, b);
 }
 
+void print_stack(t_stack *stack) {
+    while (stack) {
+        ft_printf("%d ", stack->nb);
+        stack = stack->next;
+    }
+    ft_printf("\n");
+}
+
 // This one works for sure
 // Run checker & after the commands use Ctrl + D
 int main(int argc, char **argv)
@@ -124,7 +133,7 @@ int main(int argc, char **argv)
 
     a = NULL;
     b = NULL;
-    if (argc < 2 || (argc == 2 && !argv[1][0]))
+    if (argc == 1 || (argc == 2 && !argv[1][0]))
     {
         ft_printf("Error\n");
         return (1);
@@ -141,5 +150,7 @@ int main(int argc, char **argv)
         else
             ft_sort_stacks(&a, &b);
     }
+    print_stack(a);
     ft_free_stack(&a);
+    return (0);
 }
