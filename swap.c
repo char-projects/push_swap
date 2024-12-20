@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:22:40 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/10 23:35:47 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:52:36 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Done
+// This one works for sure
 static void	ft_swap(t_stack **head)
 {
 	if (!*head || !(*head)->next)

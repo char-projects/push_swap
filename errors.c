@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:41:03 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/19 19:27:51 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 02:05:39 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,26 @@
 // Done
 int ft_error(char *argv)
 {
-	if (!argv || *argv == '\0') // Check for null or empty string
-        return (1);
-    if (*argv == '+' || *argv == '-') // Skip leading + or -
-        argv++;
-    if (*argv == '\0') // Ensure there's at least one digit after +/-
-        return (1);
-    while (*argv)
+	if (!(*argv == '+' || *argv == '-' || (*argv >= '0' && *argv <= '9')))
     {
-        if (!ft_isdigit(*argv)) // Validate each character is a digit
-            return (1);
-        argv++;
+        ft_printf("Error\n");
+        return (1);
     }
-    return (0); // Input is valid
+	if ((*argv == '+' || *argv == '-')
+		&& !(argv[1] >= '0' && argv[1] <= '9')) 
+    {
+        ft_printf("Error\n");
+        return (1);
+    }
+	while (*++argv)
+	{
+		if (!(*argv >= '0' && *argv <= '9')) 
+		{
+        ft_printf("Error\n");
+        return (1);
+        }
+	}
+    return (0);
 }
 
 // Done

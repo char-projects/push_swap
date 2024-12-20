@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:38:33 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 13:44:03 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 03:37:17 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 // Done
 long	ft_atol(const char *str)
 {
-	long	res;
+	long	result;
 	int		sign;
 
-	res = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
+	result = 0;
+	sign = 1; 
+	while (*str == ' ' || *str == '\t' || *str == '\n' || \
+			*str == '\r' || *str == '\f' || *str == '\v')
 		str++;
 	if (*str == '-' || *str == '+')
 	{
@@ -28,12 +29,9 @@ long	ft_atol(const char *str)
 			sign = -1;
 		str++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		res = res * 10 + *str - '0';
-		str++;
-	}
-	return (res * sign);
+	while (ft_isdigit(*str))
+		result = result * 10 + (*str++ - '0');
+	return (result * sign);
 }
 
 // Done
@@ -57,7 +55,7 @@ t_stack	*ft_find_min(t_stack *stack)
 	return (min_node);
 }
 
-// Done
+// This one works for sure
 t_stack *ft_find_max(t_stack *stack)
 {
 	long max;
@@ -78,6 +76,7 @@ t_stack *ft_find_max(t_stack *stack)
 	return (max_node);
 }
 
+// This one works for sure
 t_stack *ft_find_last(t_stack *stack)
 {
 	if (!stack)

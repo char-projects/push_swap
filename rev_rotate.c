@@ -6,12 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:36:13 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 13:38:40 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:51:34 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// This one works for sure
 static void	ft_rev_rotate(t_stack **stack)
 {
 	t_stack	*last;

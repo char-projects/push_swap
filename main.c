@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/17 18:04:52 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 02:25:25 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ void	ft_init_nodes_b(t_stack *a, t_stack *b)
 	ft_target_b(a, b);
 }
 
-// Done
+// This one works for sure
+// Run checker & after the commands use Ctrl + D
 int main(int argc, char **argv)
 {
     t_stack *a;

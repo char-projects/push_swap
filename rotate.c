@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:28:35 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 13:39:00 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:50:03 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// MAKE FT_FIND_LAST
+// This one works for sure
 static void	ft_rotate(t_stack **stack)
 {
 	t_stack	*last;

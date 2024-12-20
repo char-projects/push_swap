@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:34:52 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/19 19:32:36 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 02:37:18 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_sort_three(t_stack **a)
 		ft_sa(a, false);
 }
 
-// Done
+// This one works for sure
 void	ft_index(t_stack *stack)
 {
 	int	i;
@@ -48,7 +48,7 @@ void	ft_index(t_stack *stack)
 	}
 }
 
-// Done
+// This one works for sure
 int	ft_stack_len(t_stack *stack)
 {
 	int		len;
@@ -58,8 +58,8 @@ int	ft_stack_len(t_stack *stack)
 	len = 0;
 	while (stack)
 	{
-		len++;
 		stack = stack->next;
+		len++;
 	}
 	return (len);
 }
