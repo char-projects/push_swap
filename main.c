@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/20 04:19:01 by cschnath         ###   ########.fr       */
+/*   Updated: 2024/12/20 04:33:51 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	ft_init_nodes_b(t_stack *a, t_stack *b)
 	ft_index(b);
 	ft_target_b(a, b);
 }
-
+/*
 void print_stack(t_stack *stack) {
     while (stack) {
         ft_printf("%d ", stack->nb);
@@ -123,6 +123,7 @@ void print_stack(t_stack *stack) {
     }
     ft_printf("\n");
 }
+*/
 
 // This one works for sure
 // Run checker & after the commands use Ctrl + D
@@ -150,7 +151,7 @@ int main(int argc, char **argv)
         else
             ft_sort_stacks(&a, &b);
     }
-    print_stack(a);
+    // print_stack(a);
     ft_free_stack(&a);
     return (0);
 }
