@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:41:03 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 21:47:04 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 22:58:30 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_error(char *argv)
 	return (0);
 }
 
-int	ft_error_duplicate(t_stack *a, int nb)
+int	ft_duplicate(t_stack *a, int nb)
 {
 	while (a)
 	{

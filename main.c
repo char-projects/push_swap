@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 22:16:17 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/12 00:00:04 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void ft_init_stack_a(t_stack **a, char **argv)
         if (ft_error(argv[i]))
             ft_free_errors(a);
         nb = ft_atol(argv[i]);
-        if (ft_error_duplicate(*a, nb))
+        if (ft_duplicate(*a, nb))
             ft_free_errors(a);
         ft_append_node(a, nb);
         i++;
@@ -104,6 +104,7 @@ void	ft_chunky(t_stack *a, t_stack *b, int *chunks, int num_chunks)
 	}
 }
 
+// FT_CREATE_CHUNKS IS THE PROBLEM RN, FIX IT!!
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -116,7 +117,9 @@ int	main(int argc, char **argv)
 	array = ft_stack_to_array(a, ft_stack_len(a));
 	ft_sort_array(array, ft_stack_len(a));
 	num_chunks = ft_stack_len(a) / 20;
-	chunks = ft_create_chunks(a, num_chunks);
+    ft_printf("Reached until create_chunks\n");
+	chunks = ft_create_chunks(a, num_chunks); // Num_chunks is 0 for stacks with < 20 elements
+    ft_printf("Reached after create_chunks\n");
 	ft_chunky(a, b, chunks, num_chunks);
 	ft_push_back_to_a(a, b);
 	free(array);

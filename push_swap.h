@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 22:19:43 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 23:33:19 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_stack
 void				ft_push_chunk_to_b(t_stack *a, t_stack *b, int *chunk);
 void				ft_sort_stack_b(t_stack *b, t_stack *a);
 void				ft_push_back_to_a(t_stack *a, t_stack *b);
+int					*ft_stack_to_array(t_stack *stack, int stack_len);
 
 // Checks
 int					ft_is_duplicate(t_stack *stack, long int nb);
@@ -46,7 +47,7 @@ char				**ft_new_split(char const *s, char c);
 
 // Errors
 int					ft_error(char *argv);
-int					ft_error_duplicate(t_stack *a, int nb);
+int					ft_duplicate(t_stack *a, int nb);
 void				ft_free_stack(t_stack **stack);
 void				ft_free_errors(t_stack **a);
 long				ft_atol(const char *str);
@@ -60,7 +61,7 @@ void				ft_chunky(t_stack *a, t_stack *b, int *chunks,
 						int num_chunks);
 
 // Sort
-int					*ft_stack_to_array(t_stack *stack, int stack_len);
+void				ft_fill_chunks(int *chunks, int *arr, int size, int num);
 int					*ft_create_chunks(t_stack *stack, int num_chunks);
 int					ft_is_in_chunk(int value, int *chunk);
 void				ft_sort_array(int *array, int size);

@@ -6,11 +6,32 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:31:23 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 22:06:07 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 23:23:35 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	*ft_stack_to_array(t_stack *stack, int stack_len)
+{
+	int	*array;
+	int len;
+	int	i;
+
+	len = stack_len;
+	array = malloc(sizeof(int) * len);
+	if (!array)
+		return (NULL);
+	i = 0;
+	while (stack)
+	{
+		array[i] = stack->nb;
+		stack = stack->next;
+		i++;
+	}
+	ft_printf("Reached ft_stack_to_array\n");
+	return (array);
+}
 
 // Push a chunk from stack A to stack B
 void	ft_push_chunk_to_b(t_stack *a, t_stack *b, int *chunk)

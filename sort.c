@@ -6,38 +6,40 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:34:52 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 20:46:48 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 23:41:58 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*ft_stack_to_array(t_stack *stack, int stack_len)
+void	ft_fill_chunks(int *chunks, int *arr, int size, int num)
 {
-	int	*array;
-	int	i;
+    int	i;
+    int	j;
 
-	array = malloc(sizeof(int) * stack_len);
-	if (!array)
-		return (NULL);
-	i = 0;
-	while (stack)
-	{
-		array[i] = stack->nb;
-		stack = stack->next;
-		i++;
-	}
-	return (array);
+    i = -1;
+    j = 0;
+    while (++i < num)
+    {
+        chunks[i] = arr[j];
+        j += size;
+    }
+    chunks[i] = 0;
 }
 
+// THIS FUNCTION IS THE PROBLEM !!!!!!!!!
 int	*ft_create_chunks(t_stack *stack, int num_chunks)
 {
 	int	*chunks;
 	int	*array;
 	int	chunk_size;
-	int	i;
-	int	j;
 
+	ft_printf("Reached ft_create_chunks\n"); // This gets printed
+	if (num_chunks == 0)
+	{
+		ft_printf("Num_chunks was NULL\n"); // This is a problem, why is it always NULL?
+		return (NULL);
+	}
 	array = ft_stack_to_array(stack, ft_stack_len(stack));
 	if (!array)
 		return (NULL);
@@ -45,15 +47,10 @@ int	*ft_create_chunks(t_stack *stack, int num_chunks)
 	chunks = malloc(sizeof(int) * (num_chunks + 1));
 	if (!chunks)
 		return (free(array), NULL);
+	ft_printf("Or not???\n");
 	chunk_size = ft_stack_len(stack) / num_chunks;
-	i = -1;
-	j = 0;
-	while (++i < num_chunks)
-	{
-		chunks[i] = array[j];
-		j += chunk_size;
-	}
-	chunks[i] = 0;
+	ft_fill_chunks(chunks, array, chunk_size, num_chunks);
+    ft_printf("Reached end of ft_create_chunks\n");
 	free(array);
 	return (chunks);
 }
@@ -79,12 +76,14 @@ void	ft_sort_array(int *array, int size)
 	int	i;
 	int	j;
 	int	temp;
-
+	int len;
+	
+	len = size;
 	i = 0;
-	while (i < size)
+	while (i < len)
 	{
 		j = i + 1;
-		while (j < size)
+		while (j < len)
 		{
 			if (array[i] > array[j])
 			{
@@ -96,6 +95,7 @@ void	ft_sort_array(int *array, int size)
 		}
 		i++;
 	}
+	ft_printf("Reached ft_sort_array\n");
 }
 
 int	ft_stack_len(t_stack *stack)
@@ -110,5 +110,6 @@ int	ft_stack_len(t_stack *stack)
 		stack = stack->next;
 		len++;
 	}
+    ft_printf("Reached ft_stack_len\n");
 	return (len);
 }
