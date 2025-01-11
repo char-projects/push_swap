@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 21:55:39 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 22:19:43 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ long				ft_atol(const char *str);
 
 // Main
 void				ft_init_stack_a(t_stack **a, char **argv);
-// static void		ft_append_node(t_stack **stack, int nb);
+// static void		ft_append_node(t_stack **stack, long nb);
 void				ft_init_stacks(int argc, char **argv, t_stack **a,
 						t_stack **b);
 void				ft_chunky(t_stack *a, t_stack *b, int *chunks,
@@ -78,12 +78,14 @@ void				ft_pa(t_stack **a, t_stack **b, int print);
 void				ft_pb(t_stack **b, t_stack **a, int print);
 
 // Rotate
+// static t_stack	*ft_find_last(t_stack *stack);
 // static void 		ft_rotate(t_stack **stack);
 void				ft_ra(t_stack **a, int print);
 void				ft_rb(t_stack **b, int print);
 void				ft_rr(t_stack **a, t_stack **b, int print);
 
 // Rev rotate
+// static t_stack	*ft_find_last(t_stack *stack);
 // static void 		ft_rev_rotate(t_stack **stack);
 void				ft_rra(t_stack **a, int print);
 void				ft_rrb(t_stack **b, int print);

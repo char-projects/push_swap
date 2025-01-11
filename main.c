@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 21:59:48 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 22:16:17 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,48 +40,45 @@ Free memory and exit
 
 #include "push_swap.h"
 
-static void	ft_append_node(t_stack **stack, int n)
+static void ft_append_node(t_stack **stack, long nb)
 {
-	t_stack	*node;
-	t_stack	*last_node;
+    t_stack *new_node;
+    t_stack *last;
 
-	if (!stack)
-		return ;
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return ;
-	node->next = NULL;
-	node->nb = n;
-	node->cheapest = 0;
-	if (!*stack)
-	{
-		*stack = node;
-		node->prev = NULL;
-	}
-	else
-	{
-		last_node = ft_find_last(*stack);
-		last_node->next = node;
-		node->prev = last_node;
-	}
+    new_node = (t_stack *)malloc(sizeof(t_stack));
+    if (!new_node)
+        ft_free_errors(stack);
+    new_node->nb = nb;
+    new_node->next = NULL;
+    new_node->prev = NULL;
+    if (!*stack)
+        *stack = new_node;
+    else
+    {
+        last = *stack;
+        while (last->next)
+            last = last->next;
+        last->next = new_node;
+        new_node->prev = last;
+    }
 }
 
-void	ft_init_stack_a(t_stack **a, char **argv)
+void ft_init_stack_a(t_stack **a, char **argv)
 {
-	int		i;
-	long	n;
+    int	    i;
+    long	nb;
 
-	i = 0;
-	while (argv[i])
-	{
-		if (ft_error(argv[i]))
-			ft_free_errors(a);
-		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN || ft_error_duplicate(*a, (int)n))
-			ft_free_errors(a);
-		ft_append_node(a, (int)n);
-		i++;
-	}
+    i = 0;
+    while (argv[i])
+    {
+        if (ft_error(argv[i]))
+            ft_free_errors(a);
+        nb = ft_atol(argv[i]);
+        if (ft_error_duplicate(*a, nb))
+            ft_free_errors(a);
+        ft_append_node(a, nb);
+        i++;
+    }
 }
 
 // Run checker & after the commands use Ctrl + D

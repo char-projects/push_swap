@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:31:23 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 22:01:49 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 22:06:07 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,15 @@ void	ft_sort_stack_b(t_stack *b, t_stack *a)
 void	ft_push_back_to_a(t_stack *a, t_stack *b)
 {
 	int	len;
+    int position;
+    t_stack *min_node;
 
 	len = ft_stack_len(b);
 	while (len > 0)
 	{
-		ft_move_to_top(b, ft_find_min(b));
+		min_node = ft_find_min(b);
+        position = ft_find_position(b, min_node->nb);
+        ft_move_to_top(b, position);
 		ft_pa(&a, &b, 1);
 		len--;
 	}

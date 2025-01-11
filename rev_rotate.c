@@ -6,11 +6,18 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:36:13 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 20:47:08 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 22:19:02 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static t_stack	*ft_find_last(t_stack *stack)
+{
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
+}
 
 static void	ft_rev_rotate(t_stack **stack)
 {
