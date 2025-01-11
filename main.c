@@ -6,39 +6,44 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/20 04:33:51 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:59:48 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Declare pointers to two data structures / linked lists, one for stack a and one for stack b
-    // Set both pointers to NULL
-// Handle input count errors. Argc must be 2 or more, and argv[1] must not be empty
-    // If input errors, return error
-// Handle both cases of input, whether a variable number of command line arguments, or as a string
-    // If the input of numbers is a string, call ft_split to split the substrings
-// Initialize stack a by appending each input number as a node to stack a
-    // Handle integer overflow, duplicates and syntax errors (input must only contain numbers or + -)
-        // If errors found, free stack a and return error
-    // Check for each input, if it is a long int
-        // If the input is a string, convert it to a long int
-    // Append the nodes to stack a
-// Check is stack a is sorted
-    // If not sorted, implement sorting algorithm
-        // Check for two numbers
-            // If two numbers, swap them
-        // Check for three numbers
-            // If three numbers, implement simple sort three algorithm
-        // Check if the stack has more than three numbers
-            // If more than three numbers, implement Turk algorithm
-// Utils: Error handling, operations(ra, rb, rr, rra, rrb, rrr, sa, sb, ss, pa, pb), stack length, last node, min max 
+/*
+Divide and conquer with chunking:
+The array is split into chunks of values. Each chunk is processed by
+moving its elements from stack A to stack B in the correct order, then
+sorted and pushed back to stack A
+
+Preparation:
+Parse input, validate numbers, and initialize stacks A and B.
+Find the sorted order of the numbers to determine their positions for chunking
+
+Chunk Division:
+Divide the list into chunks based on size (e.g., 20-50 elements per chunk for
+medium datasets, smaller for large datasets) and the sorted order of values
+
+Push Chunks to Stack B:
+For each chunk, push elements from stack A to stack B.
+Use rotate (ra) and reverse rotate (rra) to move the closest target
+to the top of stack A
+
+Sort and Push Back to Stack A:
+Sort stack B by using rotate (rb) or reverse rotate (rrb)
+to find the largest value.
+Push the largest value from stack B back to stack A using pa.
+Use double rotations (e.g., rr) in stack A when possible for optimization
+
+Free memory and exit
+*/
 
 #include "push_swap.h"
 
-// Fixed tiny missing thing
 static void	ft_append_node(t_stack **stack, int n)
 {
-	t_stack *node;
-	t_stack *last_node;
+	t_stack	*node;
+	t_stack	*last_node;
 
 	if (!stack)
 		return ;
@@ -47,7 +52,7 @@ static void	ft_append_node(t_stack **stack, int n)
 		return ;
 	node->next = NULL;
 	node->nb = n;
-    node->cheapest = 0;
+	node->cheapest = 0;
 	if (!*stack)
 	{
 		*stack = node;
@@ -61,97 +66,64 @@ static void	ft_append_node(t_stack **stack, int n)
 	}
 }
 
-// This one works for sure
-void ft_init_a(t_stack **a, char **argv)
+void	ft_init_stack_a(t_stack **a, char **argv)
 {
-    int i;
-    long n;
+	int		i;
+	long	n;
 
-    i = 0;
-    while (argv[i])
-    {
-        if (ft_error(argv[i]))
-            ft_free_errors(a);
-        n = ft_atol(argv[i]);
-        if (n > INT_MAX || n < INT_MIN || ft_error_duplicate(*a, (int)n))
-            ft_free_errors(a);
-        ft_append_node(a, (int)n);
-        i++;
-    }
-}
-
-// Fixed this one
-static void	ft_target_b(t_stack *a, t_stack *b)
-{
-	t_stack	*current_a;
-	t_stack	*target_node;
-	long	best_match;
-
-	while (b)
+	i = 0;
+	while (argv[i])
 	{
-		best_match = LONG_MAX;
-		current_a = a;
-		while (current_a)
-		{
-			if (current_a->nb > b->nb && current_a->nb < best_match)
-			{
-				best_match = current_a->nb;
-				target_node = current_a;
-			}
-			current_a = current_a->next;
-		}
-		if (best_match == LONG_MAX)
-			b->target_node = ft_find_min(a);
-		else
-			b->target_node = target_node;
-		b = b->next;
+		if (ft_error(argv[i]))
+			ft_free_errors(a);
+		n = ft_atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN || ft_error_duplicate(*a, (int)n))
+			ft_free_errors(a);
+		ft_append_node(a, (int)n);
+		i++;
 	}
 }
 
-// Done
-void	ft_init_nodes_b(t_stack *a, t_stack *b)
-{
-	ft_index(a);
-	ft_index(b);
-	ft_target_b(a, b);
-}
-/*
-void print_stack(t_stack *stack) {
-    while (stack) {
-        ft_printf("%d ", stack->nb);
-        stack = stack->next;
-    }
-    ft_printf("\n");
-}
-*/
-
-// This one works for sure
 // Run checker & after the commands use Ctrl + D
-int main(int argc, char **argv)
+void	ft_init_stacks(int argc, char **argv, t_stack **a, t_stack **b)
 {
-    t_stack *a;
-    t_stack *b;
+	if (argc < 2)
+		exit(0);
+	*a = NULL;
+	*b = NULL;
+	ft_init_stack_a(a, argv + 1);
+}
 
-    a = NULL;
-    b = NULL;
-    if (argc == 1 || (argc == 2 && !argv[1][0]))
-    {
-        ft_printf("Error\n");
-        return (1);
-    }
-    if (argc == 2)
-        argv = ft_new_split(argv[1], ' ');
-    ft_init_a(&a, argv + 1);
-    if (!ft_is_sorted(a))
-    {
-        if (ft_stack_len(a) == 2)
-            ft_sa(&a, false);
-        else if (ft_stack_len(a) == 3)
-            ft_sort_three(&a);
-        else
-            ft_sort_stacks(&a, &b);
-    }
-    // print_stack(a);
-    ft_free_stack(&a);
-    return (0);
+void	ft_chunky(t_stack *a, t_stack *b, int *chunks, int num_chunks)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_chunks)
+	{
+		ft_push_chunk_to_b(a, b, chunks + i);
+		ft_sort_stack_b(b, a);
+		i++;
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		*array;
+	int		*chunks;
+	int		num_chunks;
+
+	ft_init_stacks(argc, argv, &a, &b);
+	array = ft_stack_to_array(a, ft_stack_len(a));
+	ft_sort_array(array, ft_stack_len(a));
+	num_chunks = ft_stack_len(a) / 20;
+	chunks = ft_create_chunks(a, num_chunks);
+	ft_chunky(a, b, chunks, num_chunks);
+	ft_push_back_to_a(a, b);
+	free(array);
+	free(chunks);
+	ft_free_stack(&a);
+	ft_free_stack(&b);
 }

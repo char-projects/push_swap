@@ -6,14 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 01:03:04 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/11 13:07:09 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:56:05 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Done
-bool	ft_is_duplicate(t_stack *stack, long int nb)
+int	ft_is_duplicate(t_stack *stack, long int nb)
 {
 	t_stack	*tmp;
 
@@ -21,99 +20,96 @@ bool	ft_is_duplicate(t_stack *stack, long int nb)
 	while (tmp)
 	{
 		if (tmp->nb == nb)
-			return (true);
+			return (0);
 		tmp = tmp->next;
 	}
-	return (false);
+	return (1);
 }
 
-// Done
-bool	ft_is_sorted(t_stack *a)
+int	ft_is_sorted(t_stack *a)
 {
 	if (!a)
 		return (1);
 	while (a->next)
 	{
 		if (a->nb > a->next->nb)
-			return (false);
+			return (1);
 		a = a->next;
 	}
-	return (true);
+	return (0);
 }
 
-// Done
+// Count the number of words in the string
 static int	ft_wordcount(char const *s, char c)
 {
-	int		count;
-	bool	i;
+	int	count;
 
 	count = 0;
 	while (*s)
 	{
-		i = false;
 		while (*s == c)
 			s++;
-		while (*s != c && *s)
+		if (*s)
 		{
-			if (!i)
-			{
-				count++;
-				i = true;
-			}
-			s++;
+			count++;
+			while (*s != c && *s)
+				s++;
 		}
 	}
 	return (count);
 }
 
-// Done
-static char	*ft_nextword(char *s, char c)
+// Extract the next word from the string
+static char	*ft_nextword(char const **s, char c)
 {
-	static int	index = 0;
-	char		*word;
-	int			len;
-	int			i;
+	char	*word;
+	int		len;
+	int		i;
 
+	while (**s == c)
+		(*s)++;
 	len = 0;
-	i = 0;
-	while (s[index] == c)
-		index++;
-	while (s[index + len] != c && s[index + len])
+	while ((*s)[len] != c && (*s)[len])
 		len++;
-	word = malloc((size_t)len * sizeof(char) + 1);
+	word = malloc((size_t)(len + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
-	while ((s[index] != c) && s[index])
-		word[i++] = s[index++];
-	word[i] = '\0';
+	i = 0;
+	while (i < len)
+	{
+		word[i] = (*s)[i];
+		i++;
+	}
+	word[len] = '\0';
+	*s += len;
 	return (word);
 }
 
-// Done
-char **ft_new_split(char *s, char c)
+// Split the string into words
+char	**ft_new_split(char const *s, char c)
 {
-	int count;
-	char **res;
-	int i;
+	int		word_count;
+	char	**res;
+	int		i;
 
-	i = 0;
-	count = ft_wordcount(s, c);
-	if (!count)
-		exit(EXIT_FAILURE);
-	res = malloc(sizeof(char *) * (size_t)(count + 2));
+	if (!s)
+		return (NULL);
+	word_count = ft_wordcount(s, c);
+	res = malloc((size_t)(word_count + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
-	while (count-- >= 0)
+	i = 0;
+	while (i < word_count)
 	{
-		if (i == 0)
+		res[i] = ft_nextword(&s, c);
+		if (!res[i])
 		{
-			res[i] = malloc(sizeof(char));
-			if (!res[i])
-				return (NULL);
-			res[i++][0] = '\0';
-			continue ; // Wtf is this?
+			while (i > 0)
+				free(res[--i]);
+			free(res);
+			return (NULL);
 		}
-		res[i++] = ft_nextword(s, c);
+		i++;
 	}
 	res[i] = NULL;
 	return (res);

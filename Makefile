@@ -6,14 +6,14 @@
 #    By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 01:15:04 by cschnath          #+#    #+#              #
-#    Updated: 2024/12/11 22:04:18 by cschnath         ###   ########.fr        #
+#    Updated: 2025/01/11 22:00:20 by cschnath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = push_swap
 
 CFLAGS  = -Wall -Wextra -Werror
-SRC		= checks.c errors.c init.c main.c push.c rev_rotate.c rotate.c sort.c swap.c switch.c utils.c utils2.c
+SRC		= algorithm.c checks.c errors.c init.c main.c push.c rev_rotate.c rotate.c sort.c swap.c utils.c
 OBJ		= ${SRC:.c=.o}
 LIBFT = libft/lib/libft.a
 

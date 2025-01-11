@@ -6,39 +6,16 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:38:33 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/20 04:16:45 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:48:02 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// This one works for sure
-long	ft_atol(const char *str)
-{
-	long	result;
-	int		sign;
-
-	result = 0;
-	sign = 1; 
-	while (*str == ' ' || *str == '\t' || *str == '\n' || \
-			*str == '\r' || *str == '\f' || *str == '\v')
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (ft_isdigit(*str))
-		result = result * 10 + (*str++ - '0');
-	return (result * sign);
-}
-
-// This one works for sure
 t_stack	*ft_find_min(t_stack *stack)
 {
-	long min;
-	t_stack *min_node;
+	long	min;
+	t_stack	*min_node;
 
 	if (!stack)
 		return (NULL);
@@ -55,11 +32,10 @@ t_stack	*ft_find_min(t_stack *stack)
 	return (min_node);
 }
 
-// This one works for sure
-t_stack *ft_find_max(t_stack *stack)
+t_stack	*ft_find_max(t_stack *stack)
 {
-	long max;
-	t_stack *max_node;
+	long	max;
+	t_stack	*max_node;
 
 	if (!stack)
 		return (NULL);
@@ -76,12 +52,61 @@ t_stack *ft_find_max(t_stack *stack)
 	return (max_node);
 }
 
-// This one works for sure
-t_stack *ft_find_last(t_stack *stack)
+// Find the position of a value in the stack
+int	ft_find_position(t_stack *stack, int value)
 {
-	if (!stack)
-		return (NULL);
-	while (stack->next)
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		if (stack->nb == value)
+			return (i);
 		stack = stack->next;
-	return (stack);
+		i++;
+	}
+	return (-1);
+}
+
+// Find the optimal position for a value
+int	ft_get_target_position(t_stack *stack, int value)
+{
+	int	i;
+	int	pos;
+	int	min;
+	int	max;
+
+	i = 0;
+	pos = 0;
+	min = ft_find_min(stack)->nb;
+	max = ft_find_max(stack)->nb;
+	if (value < min || value > max)
+		return (0);
+	while (stack)
+	{
+		if (value > stack->nb && value < stack->next->nb)
+			return (i + 1);
+		stack = stack->next;
+		i++;
+	}
+	return (pos);
+}
+
+// Rotate or reverse rotate a stack to bring a value to the top
+void	ft_move_to_top(t_stack *stack, int position)
+{
+	int	len;
+
+	len = ft_stack_len(stack);
+	if (position < len / 2)
+	{
+		while (position--)
+			ft_ra(&stack, 1);
+	}
+	else
+	{
+		position = len - position;
+		while (position--)
+			ft_rra(&stack, 1);
+	}
 }

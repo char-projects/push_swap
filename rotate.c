@@ -6,13 +6,12 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:28:35 by cschnath          #+#    #+#             */
-/*   Updated: 2024/12/19 19:50:03 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/11 20:47:03 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// This one works for sure
 static void	ft_rotate(t_stack **stack)
 {
 	t_stack	*last;
@@ -27,22 +26,21 @@ static void	ft_rotate(t_stack **stack)
 	last->next->next = NULL;
 }
 
-void	ft_ra(t_stack **a, bool print)
+void	ft_ra(t_stack **a, int print)
 {
 	ft_rotate(a);
 	if (!print)
 		ft_printf("ra\n");
 }
 
-void	ft_rb(t_stack **b, bool print)
+void	ft_rb(t_stack **b, int print)
 {
 	ft_rotate(b);
 	if (!print)
 		ft_printf("rb\n");
 }
 
-// Done
-void	ft_rr(t_stack **a, t_stack **b, bool print)
+void	ft_rr(t_stack **a, t_stack **b, int print)
 {
 	ft_rotate(a);
 	ft_rotate(b);
