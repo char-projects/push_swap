@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/12 23:01:27 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 00:05:11 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void				ft_ss(t_stack **a, t_stack **b, int print);
 // static void 		ft_push(t_stack **dst, t_stack **src);
 void				ft_pa(t_stack **a, t_stack **b, int print);
 void				ft_pb(t_stack **b, t_stack **a, int print);
+void				ft_push_smallest_to_b(t_stack **stack_a, t_stack **stack_b);
 
 // Rotate
 // static t_stack	*ft_find_last(t_stack *stack);
@@ -80,8 +81,9 @@ void				ft_rb(t_stack **b, int print);
 void				ft_rr(t_stack **a, t_stack **b, int print);
 
 // Small
+void				ft_sort_two(t_stack **stack);
 void				ft_sort_three(t_stack **stack);
-void				ft_push_smallest_to_b(t_stack **stack_a, t_stack **stack_b);
+void				ft_sort_four(t_stack **stack_a, t_stack **stack_b);
 void				ft_sort_five(t_stack **stack_a, t_stack **stack_b);
 void				ft_small(t_stack **stack_a, t_stack **stack_b, int size);
 

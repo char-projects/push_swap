@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:15:10 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/12 18:24:41 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 00:04:16 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,26 @@ void	ft_pb(t_stack **b, t_stack **a, int print)
 	ft_push(b, a);
 	if (print)
 		ft_printf("pb\n");
+}
+
+void	ft_push_smallest_to_b(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*smallest;
+    int    position;
+    int len;
+    
+	len = ft_stack_len(*stack_a);
+    smallest = ft_find_min(*stack_a);
+    position = ft_find_position(*stack_a, smallest->nb);
+    if (position <= len / 2)
+    {
+        while (position-- > 0)
+            ft_ra(stack_a, 1);
+    }
+    else
+    {
+        while (position++ < len)
+            ft_rra(stack_a, 1);
+    }
+    ft_pb(stack_b, stack_a, 1);
 }
