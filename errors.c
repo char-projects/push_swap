@@ -6,32 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:41:03 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 22:58:30 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/12 22:05:59 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-long	ft_atol(const char *str)
-{
-	long	result;
-	int		sign;
-
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r'
-		|| *str == '\f' || *str == '\v')
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (ft_isdigit(*str))
-		result = result * 10 + (*str++ - '0');
-	return (result * sign);
-}
 
 int	ft_error(char *argv)
 {
@@ -60,18 +39,14 @@ int	ft_duplicate(t_stack *a, int nb)
 
 void	ft_free_stack(t_stack **stack)
 {
-	t_stack	*tmp;
-	t_stack	*current;
+    t_stack	*temp;
 
-	if (!stack)
-		return ;
-	current = *stack;
-	while (current)
-	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
-	}
+    while (*stack)
+    {
+        temp = (*stack)->next;
+        free(*stack);
+        *stack = temp;
+    }
 	*stack = NULL;
 }
 

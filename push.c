@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:15:10 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 20:47:18 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:24:41 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static void	ft_push(t_stack **dst, t_stack **src)
 void	ft_pa(t_stack **a, t_stack **b, int print)
 {
 	ft_push(a, b);
-	if (!print)
+	if (print)
 		ft_printf("pa\n");
 }
 
 void	ft_pb(t_stack **b, t_stack **a, int print)
 {
 	ft_push(b, a);
-	if (!print)
+	if (print)
 		ft_printf("pb\n");
 }

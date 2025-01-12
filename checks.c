@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 01:03:04 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 21:56:05 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/12 22:02:50 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,6 @@ int	ft_is_duplicate(t_stack *stack, long int nb)
 		tmp = tmp->next;
 	}
 	return (1);
-}
-
-int	ft_is_sorted(t_stack *a)
-{
-	if (!a)
-		return (1);
-	while (a->next)
-	{
-		if (a->nb > a->next->nb)
-			return (1);
-		a = a->next;
-	}
-	return (0);
 }
 
 // Count the number of words in the string
@@ -88,18 +75,18 @@ static char	*ft_nextword(char const **s, char c)
 // Split the string into words
 char	**ft_new_split(char const *s, char c)
 {
-	int		word_count;
+	int		words;
 	char	**res;
 	int		i;
 
 	if (!s)
 		return (NULL);
-	word_count = ft_wordcount(s, c);
-	res = malloc((size_t)(word_count + 1) * sizeof(char *));
+	words = ft_wordcount(s, c);
+	res = malloc((size_t)(words + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
 	i = 0;
-	while (i < word_count)
+	while (i < words)
 	{
 		res[i] = ft_nextword(&s, c);
 		if (!res[i])

@@ -6,68 +6,40 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:34:52 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/11 23:41:58 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/12 20:51:28 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_fill_chunks(int *chunks, int *arr, int size, int num)
+int ft_chunk_size(int i, int arr_len, int num_chunks)
 {
-    int	i;
-    int	j;
-
-    i = -1;
-    j = 0;
-    while (++i < num)
-    {
-        chunks[i] = arr[j];
-        j += size;
-    }
-    chunks[i] = 0;
-}
-
-// THIS FUNCTION IS THE PROBLEM !!!!!!!!!
-int	*ft_create_chunks(t_stack *stack, int num_chunks)
-{
-	int	*chunks;
-	int	*array;
 	int	chunk_size;
-
-	ft_printf("Reached ft_create_chunks\n"); // This gets printed
-	if (num_chunks == 0)
-	{
-		ft_printf("Num_chunks was NULL\n"); // This is a problem, why is it always NULL?
-		return (NULL);
-	}
-	array = ft_stack_to_array(stack, ft_stack_len(stack));
-	if (!array)
-		return (NULL);
-	ft_sort_array(array, ft_stack_len(stack));
-	chunks = malloc(sizeof(int) * (num_chunks + 1));
-	if (!chunks)
-		return (free(array), NULL);
-	ft_printf("Or not???\n");
-	chunk_size = ft_stack_len(stack) / num_chunks;
-	ft_fill_chunks(chunks, array, chunk_size, num_chunks);
-    ft_printf("Reached end of ft_create_chunks\n");
-	free(array);
-	return (chunks);
+	
+	chunk_size = 0;
+	if (i < num_chunks - 1)
+		chunk_size = arr_len / num_chunks;
+	else
+		chunk_size = arr_len / num_chunks + 1;
+	return (chunk_size);
 }
 
-// Check if a value belongs to a chunk
-int	ft_is_in_chunk(int value, int *chunk)
+// Create a chunk
+int	*ft_create_chunks(int *arr, int size, int i)
 {
-	int	i;
-
-	i = 0;
-	while (chunk[i])
+	int	*chunk;
+	int j;
+	
+	j = 0;
+	chunk = malloc(sizeof(int) * (size));
+	if (!chunk)
+		return (free(arr), NULL);
+	while (j < size)
 	{
-		if (value == chunk[i])
-			return (0);
-		i++;
+		chunk[j] = arr[i + j];
+		j++;
 	}
-	return (1);
+	return (chunk);
 }
 
 // Sort an array for chunk creation
@@ -76,14 +48,12 @@ void	ft_sort_array(int *array, int size)
 	int	i;
 	int	j;
 	int	temp;
-	int len;
-	
-	len = size;
+
 	i = 0;
-	while (i < len)
+	while (i < size)
 	{
 		j = i + 1;
-		while (j < len)
+		while (j < size)
 		{
 			if (array[i] > array[j])
 			{
@@ -95,7 +65,6 @@ void	ft_sort_array(int *array, int size)
 		}
 		i++;
 	}
-	ft_printf("Reached ft_sort_array\n");
 }
 
 int	ft_stack_len(t_stack *stack)
@@ -110,6 +79,5 @@ int	ft_stack_len(t_stack *stack)
 		stack = stack->next;
 		len++;
 	}
-    ft_printf("Reached ft_stack_len\n");
 	return (len);
 }
