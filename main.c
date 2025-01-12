@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/12 22:25:09 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/12 23:32:50 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ int	ft_calculate_chunks(int stack_len)
 {
 	int	chunk_size;
 
-	if (stack_len <= 100)
+	if (stack_len <= 10)
+		return (1);
+	else if (stack_len <= 100)
 		chunk_size = 10;
 	else if (stack_len <= 500)
 		chunk_size = 20;
@@ -101,8 +103,8 @@ int	main(int argc, char **argv)
 
 	ft_init_stacks(argc, argv, &a, &b);
 	len = ft_stack_len(a);
-	if (len <= 10)
-		ft_insertion_sort(&a, &b);
+	if (len <= 5)
+		ft_small(&a, &b, len);
 	else
 	{
 		num_chunks = ft_calculate_chunks(len);
@@ -115,6 +117,6 @@ int	main(int argc, char **argv)
 		while (b)
 			ft_pa(&a, &b, 1);
 	}
-	ft_printf("Stack A after sorting: ");
+	ft_printf("Result: ");
 	ft_print_stack(a);
 }

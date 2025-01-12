@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/12 22:25:44 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/12 23:01:27 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ void				ft_rb(t_stack **b, int print);
 void				ft_rr(t_stack **a, t_stack **b, int print);
 
 // Small
-void				ft_small_swap(t_stack **stack);
-void				ft_small_rotate(t_stack **stack);
-void				ft_small_rev_rotate(t_stack **stack);
-void				ft_insertion_sort(t_stack **a, t_stack **b);
+void				ft_sort_three(t_stack **stack);
+void				ft_push_smallest_to_b(t_stack **stack_a, t_stack **stack_b);
+void				ft_sort_five(t_stack **stack_a, t_stack **stack_b);
+void				ft_small(t_stack **stack_a, t_stack **stack_b, int size);
 
 // Rev rotate
 // static t_stack	*ft_find_last(t_stack *stack);
