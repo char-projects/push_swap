@@ -6,13 +6,18 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:37 by cschnath          #+#    #+#             */
-/*   Updated: 2024/11/25 22:31:09 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 01:00:37 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 3
+# endif
+
+# include <fcntl.h>
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -84,7 +89,6 @@ double				ft_atof(char *str);
 
 // Printf
 int					ft_putnbr(int n);
-/** */
 int					ft_putchar(char c);
 int					ft_strlen_printf(const char *s);
 int					ft_putstr(char *s);
@@ -95,5 +99,15 @@ int					ft_putpointer(unsigned long long hello);
 int					ft_putudec(unsigned int i);
 int					find_conversion(char c, va_list args);
 int					ft_printf(const char *str, ...);
+
+// Get next line
+char				*ft_strjoin_gnl(char *s1, char *s2);
+size_t				ft_strlen_gnl(char *s);
+char				*ft_strchr_gnl(char *s, int c);
+void				*ft_calloc(size_t count, size_t size);
+char				*get_next_line(int fd);
+char				*ft_clean_buffer(char *buf);
+char				*ft_read_file(int fd, char *buf);
+char				*ft_second_function(char *buf);
 
 #endif

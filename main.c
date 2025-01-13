@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/12 23:32:50 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 01:04:09 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Divide the list into chunks based on size and the sorted order of values
 
 #include "push_swap.h"
 
-static void	ft_append_node(t_stack **stack, long nb)
+void	ft_append_node(t_stack **stack, long nb)
 {
 	t_stack	*new_node;
 	t_stack	*last;
@@ -117,6 +117,6 @@ int	main(int argc, char **argv)
 		while (b)
 			ft_pa(&a, &b, 1);
 	}
-	ft_printf("Result: ");
-	ft_print_stack(a);
+	//ft_printf("Result: ");
+	//ft_print_stack(a);
 }
