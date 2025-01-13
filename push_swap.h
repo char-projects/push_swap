@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:04:36 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 01:33:00 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void				ft_rrr(t_stack **a, t_stack **b, int print);
 int					*ft_rev_array(int *array, int len);
 t_stack				*ft_find_min(t_stack *stack);
 int					ft_find_position(t_stack *stack, int value);
-void				ft_move_to_top(t_stack **stack, int value);
 long				ft_atol(const char *str);
 
 #endif

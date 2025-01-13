@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:38:33 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/12 21:58:30 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 01:32:49 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,6 @@ int	ft_find_position(t_stack *stack, int value)
 		i++;
 	}
 	return (-1);
-}
-
-// Rotate or reverse rotate a stack to bring a value to the top
-void	ft_move_to_top(t_stack **stack, int value)
-{
-    int	position;
-    int	len;
-
-    position = ft_find_position(*stack, value);
-    len = ft_stack_len(*stack);
-    if (position < len / 2)
-    {
-        while (position-- > 0)
-            ft_ra(stack, 1);
-    }
-    else
-    {
-        position = len - position;
-        while (position-- > 0)
-            ft_rra(stack, 1);
-    }
 }
 
 long	ft_atol(const char *str)
