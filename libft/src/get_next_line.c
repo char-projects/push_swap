@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:54:07 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:01:26 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:31:22 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_clean_buffer(char *buf)
 		free(buf);
 		return (NULL);
 	}
-	tmp = ft_calloc((ft_strlen_gnl(buf) - i + 1), sizeof(char));
+	tmp = ft_calloc_gnl((ft_strlen_gnl(buf) - i + 1), sizeof(char));
 	if (!tmp)
 		return (NULL);
 	i++;
@@ -47,7 +47,7 @@ char	*ft_second_function(char *buf)
 		return (NULL);
 	while (buf[j] && buf[j] != '\n')
 		j++;
-	tmp = ft_calloc((j + 2), sizeof(char));
+	tmp = ft_calloc_gnl((j + 2), sizeof(char));
 	if (!tmp)
 		return (NULL);
 	j = 0;
@@ -69,7 +69,7 @@ char	*ft_read_file(int fd, char *buf)
 	char	*tmp;
 	int		i;
 
-	tmp = ft_calloc((BUFFER_SIZE + 2), sizeof(char));
+	tmp = ft_calloc_gnl((BUFFER_SIZE + 2), sizeof(char));
 	if (!tmp)
 		return (NULL);
 	i = 1;

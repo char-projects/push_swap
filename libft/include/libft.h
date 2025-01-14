@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:37 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:00:37 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:30:48 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int					ft_printf(const char *str, ...);
 char				*ft_strjoin_gnl(char *s1, char *s2);
 size_t				ft_strlen_gnl(char *s);
 char				*ft_strchr_gnl(char *s, int c);
-void				*ft_calloc(size_t count, size_t size);
+void				*ft_calloc_gnl(size_t count, size_t size);
 char				*get_next_line(int fd);
 char				*ft_clean_buffer(char *buf);
 char				*ft_read_file(int fd, char *buf);

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:54:54 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:01:19 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:31:52 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_strchr_gnl(char *s, int c)
 	return (NULL);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc_gnl(size_t count, size_t size)
 {
 	char	*ptr;
 	size_t	i;
@@ -66,7 +66,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	char	*str;
 
 	if (!s1)
-		s1 = (char *)ft_calloc(1, sizeof(char));
+		s1 = (char *)ft_calloc_gnl(1, sizeof(char));
 	if (!s1 || !s2)
 		return (NULL);
 	str = ft_calloc(((ft_strlen_gnl(s1) + ft_strlen_gnl(s2)) + 1), sizeof(char));

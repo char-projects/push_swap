@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 01:38:33 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:32:49 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 20:38:12 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,22 @@ long	ft_atol(const char *str)
 	while (ft_isdigit(*str))
 		result = result * 10 + (*str++ - '0');
 	return (result * sign);
+}
+
+char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+    size_t	i;
+
+    i = 0;
+    while (i < len && src[i] != '\0')
+    {
+        dst[i] = src[i];
+        i++;
+    }
+    while (i < len)
+    {
+        dst[i] = '\0';
+        i++;
+    }
+    return (dst);
 }

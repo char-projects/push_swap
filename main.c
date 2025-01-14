@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:16:56 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:27:18 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	ft_append_node(t_stack **stack, long nb)
 
 	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
-		ft_free_errors(stack);
+	{
+		ft_free_stack(stack);
+		exit(1);
+	}
 	new_node->nb = nb;
 	new_node->next = NULL;
 	new_node->prev = NULL;
@@ -49,31 +52,55 @@ void	ft_append_node(t_stack **stack, long nb)
 	}
 }
 
-void	ft_init_stack_a(t_stack **a, char **argv)
+void	ft_validate(int argc, char **argv, t_stack **a)
 {
-	int		i;
 	long	nb;
+	int 	i;
 
-	i = 0;
-	while (argv[i])
+	i = 1;
+	while (i < argc)
 	{
 		if (ft_error(argv[i]))
 			ft_free_errors(a);
 		nb = ft_atol(argv[i]);
-		if (ft_duplicate(*a, nb))
-			ft_free_errors(a);
 		ft_append_node(a, nb);
 		i++;
+	}
+	if (argc == 2)
+	{
+		i = 0;
+		while (argv[i])
+			free(argv[i++]);
+		free(argv);
 	}
 }
 
 void	ft_init_stacks(int argc, char **argv, t_stack **a, t_stack **b)
 {
-	if (argc < 2)
-		exit(0);
+	int		new_argc;
+	char	**split_argv;
+
 	*a = NULL;
 	*b = NULL;
-	ft_init_stack_a(a, argv + 1);
+	if (argc < 2 || (argc == 2 && !(*argv)[1]))
+	{
+		ft_printf("Error: Number of arguments!\n");
+		exit(EXIT_FAILURE);
+	}
+	if (argc == 2)
+	{
+		split_argv = ft_new_split(argv[1], ' ');
+		new_argc = ft_wordcount(argv[1], ' ');
+		if (ft_duplicate(split_argv, new_argc))
+			exit(EXIT_FAILURE);
+		ft_validate(new_argc, split_argv, a);
+	}
+	else
+	{
+		if (ft_duplicate(argv, argc))
+			exit(EXIT_FAILURE);
+		ft_validate(argc, argv, a);
+	}
 }
 
 // Dynamically calculate the number of chunks based on stack size
@@ -103,8 +130,10 @@ int	main(int argc, char **argv)
 
 	ft_init_stacks(argc, argv, &a, &b);
 	len = ft_stack_len(a);
-	if (len <= 5)
+	if (len <= 5 && !(ft_is_sorted(a)))
 		ft_small(&a, &b, len);
+	else if ((ft_is_sorted(a)))
+		ft_free_errors(&a);
 	else
 	{
 		num_chunks = ft_calculate_chunks(len);
@@ -117,6 +146,6 @@ int	main(int argc, char **argv)
 		while (b)
 			ft_pa(&a, &b, 1);
 	}
-	//ft_printf("Result: ");
-	//ft_print_stack(a);
+	ft_printf("Result: ");
+	ft_print_stack(a);
 }

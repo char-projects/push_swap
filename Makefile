@@ -6,7 +6,7 @@
 #    By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 01:15:04 by cschnath          #+#    #+#              #
-#    Updated: 2025/01/13 00:52:09 by cschnath         ###   ########.fr        #
+#    Updated: 2025/01/13 17:39:15 by cschnath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT = libft/lib/libft.a
 
 all: $(NAME)
 
-$(NAME): $(MLX) $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(OBJ)
 	@gcc $(CFLAGS) $(OBJ) $(MLX) -o $(NAME) $(LIBFT)
 
 $(LIBFT):

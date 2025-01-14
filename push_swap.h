@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:33:00 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:27:24 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,30 @@ typedef struct s_stack
 // Algorithm
 void	ft_print_stack(t_stack *stack); // Remove later
 int					**ft_rev_chunks(int **chunks, int num);
-t_stack				*ft_arr_to_chunk(t_stack *a, t_stack *b, int *arr, int num, int len);
+t_stack				*ft_arr_to_chunk(t_stack *a, t_stack *b, int *arr, int num,
+						int len);
 void				ft_push_chunk_to_b(t_stack **a, t_stack **b, int *chunk,
 						int size);
 int					*ft_stack_to_array(t_stack *stack, int stack_len);
 
 // Checks
-int					ft_is_duplicate(t_stack *stack, long int nb);
-// static int		ft_wordcount(char const **s, char c);
-// static char		*ft_nextword(char *s, char c);
+int					ft_is_sorted(t_stack *stack);
+int					ft_is_duplicate(t_stack *stack);
+int					ft_wordcount(char const *s, char c);
+// static char		*ft_nextword(char **s, char c);
 char				**ft_new_split(char const *s, char c);
 
 // Errors
 int					ft_error(char *argv);
-int					ft_duplicate(t_stack *a, int nb);
+int					ft_duplicate(char **argv, int size);
 void				ft_free_stack(t_stack **stack);
 void				ft_free_errors(t_stack **a);
 
 // Main
 int					main(int argc, char **argv);
 int					ft_calculate_chunks(int stack_len);
-void				ft_init_stack_a(t_stack **a, char **argv);
 void				ft_append_node(t_stack **stack, long nb);
+void				ft_validate(int argc, char **argv, t_stack **a);
 void				ft_init_stacks(int argc, char **argv, t_stack **a,
 						t_stack **b);
 
@@ -81,7 +83,6 @@ void				ft_rb(t_stack **b, int print);
 void				ft_rr(t_stack **a, t_stack **b, int print);
 
 // Small
-void				ft_sort_two(t_stack **stack);
 void				ft_sort_three(t_stack **stack);
 void				ft_sort_four(t_stack **stack_a, t_stack **stack_b);
 void				ft_sort_five(t_stack **stack_a, t_stack **stack_b);
@@ -98,6 +99,7 @@ void				ft_rrr(t_stack **a, t_stack **b, int print);
 int					*ft_rev_array(int *array, int len);
 t_stack				*ft_find_min(t_stack *stack);
 int					ft_find_position(t_stack *stack, int value);
+char				*ft_strncpy(char *dst, const char *src, size_t len);
 long				ft_atol(const char *str);
 
 #endif

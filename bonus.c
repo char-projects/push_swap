@@ -6,10 +6,11 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:23:20 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 01:05:17 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:40:08 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include "push_swap.h"
 
 void	ft_execute(char *str, t_stack **stack_a,
@@ -89,7 +90,7 @@ int ft_parse_arguments(int argc, char **argv, t_stack **stack_a)
 	}
 	return (1);
 }
-
+*/
 /*
 int	main(int argc, char **argv)
 {
