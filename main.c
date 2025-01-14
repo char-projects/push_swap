@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/14 19:27:18 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:39:19 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,10 @@ void	ft_append_node(t_stack **stack, long nb)
 	}
 }
 
-void	ft_validate(int argc, char **argv, t_stack **a)
+void	ft_validate(int argc, char **argv, t_stack **a, int i)
 {
 	long	nb;
-	int 	i;
 
-	i = 1;
 	while (i < argc)
 	{
 		if (ft_error(argv[i]))
@@ -75,7 +73,7 @@ void	ft_validate(int argc, char **argv, t_stack **a)
 	}
 }
 
-void	ft_init_stacks(int argc, char **argv, t_stack **a, t_stack **b)
+void	ft_init_stacks(int argc, char **argv, t_stack **a, t_stack **b, int i)
 {
 	int		new_argc;
 	char	**split_argv;
@@ -93,14 +91,15 @@ void	ft_init_stacks(int argc, char **argv, t_stack **a, t_stack **b)
 		new_argc = ft_wordcount(argv[1], ' ');
 		if (ft_duplicate(split_argv, new_argc))
 			exit(EXIT_FAILURE);
-		ft_validate(new_argc, split_argv, a);
+		ft_validate(new_argc, split_argv, a, 0);
 	}
 	else
 	{
 		if (ft_duplicate(argv, argc))
 			exit(EXIT_FAILURE);
-		ft_validate(argc, argv, a);
+		ft_validate(argc, argv, a, 1);
 	}
+	(void)i;
 }
 
 // Dynamically calculate the number of chunks based on stack size
@@ -128,7 +127,7 @@ int	main(int argc, char **argv)
 	int		len;
 	int		num_chunks;
 
-	ft_init_stacks(argc, argv, &a, &b);
+	ft_init_stacks(argc, argv, &a, &b, 0);
 	len = ft_stack_len(a);
 	if (len <= 5 && !(ft_is_sorted(a)))
 		ft_small(&a, &b, len);

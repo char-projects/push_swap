@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 01:30:31 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/14 19:27:24 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:38:29 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void				ft_free_errors(t_stack **a);
 int					main(int argc, char **argv);
 int					ft_calculate_chunks(int stack_len);
 void				ft_append_node(t_stack **stack, long nb);
-void				ft_validate(int argc, char **argv, t_stack **a);
+void				ft_validate(int argc, char **argv, t_stack **a, int i);
 void				ft_init_stacks(int argc, char **argv, t_stack **a,
-						t_stack **b);
+						t_stack **b, int i);
 
 // Sort
 int					ft_chunk_size(int i, int stack_len, int num_chunks);
