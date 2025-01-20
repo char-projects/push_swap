@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 20:31:23 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/12 22:06:04 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:45:05 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_print_stack(t_stack *stack)
 	ft_printf("\n");
 }
 
-int **ft_rev_chunks(int **chunks, int num)
+int	**ft_rev_chunks(int **chunks, int num)
 {
 	int	i;
 	int	j;
@@ -44,7 +44,7 @@ int **ft_rev_chunks(int **chunks, int num)
 
 t_stack	*ft_arr_to_chunk(t_stack *a, t_stack *b, int *arr, int num, int len)
 {
-	int **chunks;
+	int	**chunks;
 	int	chunk_size;
 	int	arr_i;
 	int	i;
@@ -56,13 +56,17 @@ t_stack	*ft_arr_to_chunk(t_stack *a, t_stack *b, int *arr, int num, int len)
 		return (NULL);
 	while (i < num)
 	{
-		chunk_size = ft_chunk_size(i, len, num);
+		chunk_size = ft_chunk_size(i, len - 4, num);
 		chunks[i] = ft_create_chunks(arr, chunk_size, arr_i);
 		chunks[i] = ft_rev_array(chunks[i], chunk_size);
-	    ft_push_chunk_to_b(&a, &b, chunks[i], chunk_size);
+		ft_push_chunk_to_b(&a, &b, chunks[i], chunk_size);
 		arr_i += chunk_size;
 		i++;
 	}
+	ft_printf("Stack A: ");
+	ft_print_stack(a);
+	ft_printf("Stack B: ");
+	ft_print_stack(b);
 	free(chunks);
 	free(arr);
 	return (b);
@@ -91,7 +95,7 @@ void	ft_push_chunk_to_b(t_stack **a, t_stack **b, int *chunk, int size)
 {
 	int	i;
 	int	pos;
-	int len_a;
+	int	len_a;
 
 	i = size - 1;
 	while (i >= 0 && *a)

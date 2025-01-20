@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:41:03 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 20:04:13 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:29:47 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int	ft_error(char *argv)
 // This function checks if any of the argvs are duplicates
 int	ft_duplicate(char **argv, int size)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*longest;
 
 	i = 0;
 	while (i < size - 1)
@@ -45,7 +46,11 @@ int	ft_duplicate(char **argv, int size)
 		j = i + 1;
 		while (j < size)
 		{
-			if (ft_strncmp(argv[i], argv[j], ft_strlen(argv[i])) == 0)
+			if (ft_strlen(argv[i]) > ft_strlen(argv[j]))
+				longest = argv[i];
+			else
+				longest = argv[j];
+			if (ft_strncmp(argv[i], argv[j], ft_strlen(longest)) == 0)
 			{
 				ft_printf("Error: Duplicate!\n");
 				return (1);

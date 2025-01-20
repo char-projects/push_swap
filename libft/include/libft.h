@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:37 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/13 17:30:48 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:15:29 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,8 @@ char				*get_next_line(int fd);
 char				*ft_clean_buffer(char *buf);
 char				*ft_read_file(int fd, char *buf);
 char				*ft_second_function(char *buf);
+
+// Custom fucntions
+void				ft_charppfree(char **str);
 
 #endif

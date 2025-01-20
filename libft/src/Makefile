@@ -6,7 +6,7 @@
 #    By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 22:50:44 by cschnath          #+#    #+#              #
-#    Updated: 2025/01/13 00:57:46 by cschnath         ###   ########.fr        #
+#    Updated: 2025/01/20 15:17:15 by cschnath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRC_NAMES = ft_isalpha.c \
 	ft_atof.c \
 	get_next_line.c \
 	get_next_line_utils.c \
+	ft_charppfree.c \
 
 OBJS = $(SRC_NAMES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 23:07:30 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/14 19:39:19 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:50:31 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ int	main(int argc, char **argv)
 			ft_free_errors(&a);
 		ft_sort_array(arr, len);
 		b = ft_arr_to_chunk(a, b, arr, num_chunks, len);
-		a = NULL;
 		while (b)
 			ft_pa(&a, &b, 1);
 	}

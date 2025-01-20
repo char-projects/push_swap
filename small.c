@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:11:37 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/14 21:41:14 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:20:03 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,10 @@ void	ft_sort_three(t_stack **stack)
 
 void	ft_sort_four(t_stack **stack_a, t_stack **stack_b)
 {
-	if ((*stack_a)->nb < (*stack_a)->next->nb
-		&& (*stack_a)->next->nb < (*stack_a)->next->next->nb
-		&& (*stack_a)->next->next->next->nb < (*stack_a)->nb)
-		ft_rra(stack_a, 1);
-	else
-	{
-		// Find the smallest number and push it to stack B
-		ft_push_smallest_to_b(stack_a, stack_b);
-		ft_sort_three(stack_a);
-		ft_pa(stack_a, stack_b, 1);
-	}
+	// Find the smallest number and push it to stack B
+	ft_push_smallest_to_b(stack_a, stack_b);
+	ft_sort_three(stack_a);
+	ft_pa(stack_a, stack_b, 1);
 }
 
 void	ft_sort_five(t_stack **stack_a, t_stack **stack_b)
