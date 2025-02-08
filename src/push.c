@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:58 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/07 16:41:49 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 04:03:59 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ft_initial_push(t_stack *stack)
 
 	i = 0;
 	stack->pivot = stack->sorted[stack->size_a / 2];
+	ft_printf("Pivot: %d\n", stack->pivot);
 	while ((i < stack->og_size) && stack->size_a >= 3 && !ft_is_sorted(stack->a,
 			stack->size_a))
 	{
@@ -79,4 +80,8 @@ void	ft_initial_push(t_stack *stack)
 		while (stack->size_b > 0)
 			ft_pa(stack, 0);
 	}
+	ft_printf("A after initial push: ");
+	ft_print_arr(stack->a, stack->size_a);
+	ft_printf("B after initial push: ");
+	ft_print_arr(stack->b, stack->size_b);
 }

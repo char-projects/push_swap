@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:28 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/07 16:18:43 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 08:56:00 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_cost_a(t_stack *stack, int i)
 	half_stack = stack->size_a / 2 + 1;
 	cost_a = stack->target[i];
 	if (stack->target[i] > half_stack)
-		cost_a = (stack->size_a + 2 - stack->target[i]) * (-1);
+		cost_a = (stack->size_a - stack->target[0]) * (-1);
 	return (cost_a);
 }
 
@@ -48,8 +48,6 @@ int	ft_cheapest(t_stack *stack)
 	cheapest_index = 0;
 	i = 0;
 	ft_set_target(stack);
-	ft_printf("target: ");
-	ft_print_arr(stack->target, stack->size_b);
 	while (i < stack->size_b)
 	{
 		cost = ft_abs(ft_cost_a(stack, i)) + ft_abs(ft_cost_b(stack, i));
@@ -67,26 +65,49 @@ int	ft_payday(t_stack *stack, int i)
 {
 	int	cost_a;
 	int	cost_b;
+	int tmp;
 
+	tmp = 0;
 	cost_a = ft_cost_a(stack, i);
 	cost_b = ft_cost_b(stack, i);
-	ft_printf("cost_a: %d\n", cost_a);
-	ft_printf("cost_b: %d\n", cost_b);
-	ft_do_rrr(stack, cost_a, cost_b);
-	ft_do_rr(stack, cost_a, cost_b);
-	if (cost_a < 0)
+	ft_printf("Cost A: %d\n", cost_a);
+	ft_printf("Cost B: %d\n", cost_b);
+	ft_do_rb(stack, cost_b);
+	if (stack->b[0] > stack->a[stack->size_a - 1])
 	{
+		ft_printf("b[i]: %d\n", stack->b[0]);
 		ft_pa(stack, 0);
 		ft_ra(stack, 1);
-		ft_do_rb(stack, cost_b);
+		return cost_a;
+	}
+	if (cost_a < 0)
+	{
+		tmp += ft_do_ra(stack, cost_a);
+		ft_pa(stack, 0);
+		//ft_ra(stack, 1);
+		//ft_do_ra(stack, cost_a);
 	}
 	else if (cost_a > 0)
 	{
-		ft_ra(stack, 1);
+		// tmp += ft_do_rrr(stack, cost_a, cost_b);
+		// ft_printf("tmp: %d\n", tmp);
+		// ft_do_rr(stack, cost_a, cost_b);
+		// if (tmp == 0)
+		tmp += ft_do_ra(stack, cost_a);
 		ft_pa(stack, 0);
-		ft_do_rb(stack, cost_b);
 	}
 	else
 		ft_pa(stack, 0);
+	ft_printf("second tmp: %d\n", tmp);
+	while (tmp > 1)
+	{
+		ft_rra(stack, 1);
+		tmp--;
+	}
+	while (tmp < 1)
+	{
+		ft_ra(stack, 1);
+		tmp++;
+	}
 	return (cost_a);
 }

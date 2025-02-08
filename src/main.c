@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:53 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/07 16:37:57 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 04:57:58 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,12 @@ int	main(int argc, char **argv)
 			while (stack->size_b > 0)
 			{
 				cheapest = ft_cheapest(stack);
+				ft_printf("Cheapest: %d\n", stack->b[cheapest]);
 				ft_payday(stack, cheapest);
+				ft_printf("A:  ");
+				ft_print_arr(stack->a, stack->size_a);
+				ft_printf("B:  ");
+				ft_print_arr(stack->b, stack->size_b);
 			}
 			ft_last_rra(stack);
 		}

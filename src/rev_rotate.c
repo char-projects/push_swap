@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:12:04 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/07 16:22:51 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 06:27:31 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,19 @@ void	ft_rrr(t_stack *stack)
 	ft_printf("rrr\n");
 }
 
-void	ft_do_rrr(t_stack *stack, int cost_a, int cost_b)
+int	ft_do_rrr(t_stack *stack, int cost_a, int cost_b)
 {
+	int tmp;
+	
+	tmp = 0;
 	while (cost_a < 0 && cost_b < 0)
 	{
+		tmp++;
 		cost_a++;
 		cost_b++;
 		ft_rrr(stack);
 	}
+	return (tmp);
 }
 
 // if at the end the stack is like this: 5 6 1 2, do rra until it's sorted
