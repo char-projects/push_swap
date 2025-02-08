@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:28 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 08:56:00 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:24:09 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_cost_b(t_stack *stack, int i)
 	if (i <= stack->size_b / 2)
 		cost_b = i;
 	else
-		cost_b = ((stack->size_b - i) + 1) * (-1);
+		cost_b = (stack->size_b - i) * (-1);
 	return (cost_b);
 }
 
@@ -80,34 +80,25 @@ int	ft_payday(t_stack *stack, int i)
 		ft_ra(stack, 1);
 		return cost_a;
 	}
-	if (cost_a < 0)
+	if (cost_a == 0 && cost_b == 0)
 	{
-		tmp += ft_do_ra(stack, cost_a);
 		ft_pa(stack, 0);
-		//ft_ra(stack, 1);
-		//ft_do_ra(stack, cost_a);
+		return cost_a;
 	}
-	else if (cost_a > 0)
-	{
-		// tmp += ft_do_rrr(stack, cost_a, cost_b);
-		// ft_printf("tmp: %d\n", tmp);
-		// ft_do_rr(stack, cost_a, cost_b);
-		// if (tmp == 0)
-		tmp += ft_do_ra(stack, cost_a);
-		ft_pa(stack, 0);
-	}
-	else
-		ft_pa(stack, 0);
-	ft_printf("second tmp: %d\n", tmp);
-	while (tmp > 1)
+	tmp += ft_do_ra(stack, cost_a);
+	ft_pa(stack, 0);
+	while (tmp > 0)
 	{
 		ft_rra(stack, 1);
 		tmp--;
 	}
-	while (tmp < 1)
+	if (tmp < 0)
 	{
-		ft_ra(stack, 1);
-		tmp++;
+		while (tmp < 1)
+		{
+			ft_ra(stack, 1);
+			tmp++;
+		}
 	}
 	return (cost_a);
 }
