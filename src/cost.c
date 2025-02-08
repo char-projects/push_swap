@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:28 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 19:24:09 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:34:28 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,9 @@ int	ft_payday(t_stack *stack, int i)
 	tmp = 0;
 	cost_a = ft_cost_a(stack, i);
 	cost_b = ft_cost_b(stack, i);
-	ft_printf("Cost A: %d\n", cost_a);
-	ft_printf("Cost B: %d\n", cost_b);
 	ft_do_rb(stack, cost_b);
 	if (stack->b[0] > stack->a[stack->size_a - 1])
 	{
-		ft_printf("b[i]: %d\n", stack->b[0]);
 		ft_pa(stack, 0);
 		ft_ra(stack, 1);
 		return cost_a;
@@ -102,3 +99,4 @@ int	ft_payday(t_stack *stack, int i)
 	}
 	return (cost_a);
 }
+

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:12:29 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 04:04:39 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:35:37 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	ft_sort_arr(t_stack *arr, int size, int i)
 		}
 		i++;
 	}
-	ft_printf("Sorted array: ");
-	ft_print_arr(arr->sorted, size);
 }
 
 // map each value in a to its target index in sorted
