@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:53 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 19:36:24 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:39:38 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_split_stacks(char **argv, t_stack *stack)
 	int		i;
 
 	i = 0;
-	stack->argc = ft_wordcount(argv[1], ' ') + 1;
 	split_argv = ft_new_split(argv[1], ' ');
 	new_argv = malloc((stack->argc) * sizeof(char *) + 1);
 	if (!new_argv)
@@ -68,22 +67,25 @@ t_stack	*ft_init(int argc, char **argv)
 	t_stack	*stack;
 
 	stack = (t_stack *)ft_calloc(1, sizeof(t_stack));
-	stack->argc = argc;
+	ft_calc_argc(stack, argc, argv);
 	stack->a = ft_calloc(stack->argc, sizeof(int));
 	stack->b = ft_calloc(stack->argc, sizeof(int));
 	stack->sorted = ft_calloc(stack->argc, sizeof(int));
-	stack->target = ft_calloc(stack->argc, sizeof(int));
 	if (stack->argc < 2 || (stack->argc == 2 && !(*argv)[1]))
 	{
 		ft_printf("Error: Number of arguments!\n");
 		exit(EXIT_FAILURE);
 	}
-	if (stack->argc == 2)
+	if (argc == 2)
 		ft_split_stacks(argv, stack);
 	else
 		ft_init_stacks(argv, stack);
 	return (stack);
 }
+
+/* Add this for eval:
+ft_printf("Result: ");
+ft_print_arr(stack->a, stack->size_a); */
 
 int	main(int argc, char **argv)
 {
@@ -103,13 +105,11 @@ int	main(int argc, char **argv)
 			ft_initial_push(stack);
 			while (stack->size_b > 0)
 			{
-				cheapest = ft_cheapest(stack);
+				cheapest = ft_cheapest(stack, 0);
 				ft_payday(stack, cheapest);
 			}
 			ft_last_rra(stack);
 		}
 	}
-	// ft_printf("Result: ");
-	// ft_print_arr(stack->a, stack->size_a);
 	ft_free_errors(stack);
 }

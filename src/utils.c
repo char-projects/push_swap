@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:12:29 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 19:35:37 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:30:27 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,6 @@ void	ft_sort_arr(t_stack *arr, int size, int i)
 			}
 			j++;
 		}
-		i++;
-	}
-}
-
-// map each value in a to its target index in sorted
-void	ft_set_target(t_stack *stack)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	stack->target = ft_calloc(stack->size_b + 1, sizeof(int));
-	while (i < stack->size_b)
-	{
-		j = 0;
-		while (j < stack->size_a)
-		{
-			if (stack->a[j] > stack->b[i])
-			{
-				stack->target[i] = j;
-				break ;
-			}
-			j++;
-		}
-		if (j == stack->size_a)
-			stack->target[i] = stack->size_a + 1;
 		i++;
 	}
 }
@@ -110,4 +84,12 @@ long	ft_atol(const char *str)
 	while (ft_isdigit(*str))
 		result = result * 10 + (*str++ - '0');
 	return (result * sign);
+}
+
+void	ft_calc_argc(t_stack *stack, int argc, char **argv)
+{
+	if (argc == 2)
+		stack->argc = ft_wordcount(argv[1], ' ');
+	else
+		stack->argc = argc;
 }

@@ -6,12 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:47 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/07 16:38:05 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:38:49 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+/*
 void	ft_print_arr(int *arr, int size)
 {
 	int	i;
@@ -23,7 +24,7 @@ void	ft_print_arr(int *arr, int size)
 		i++;
 	}
 	ft_printf("\n");
-}
+} */
 
 void	ft_free_errors(t_stack *stack)
 {

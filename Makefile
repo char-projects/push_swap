@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -DM -g
 
 NAME = push_swap
 SRC_DIR = src
-SRC = checks.c cost.c errors.c main.c push.c rev_rotate.c rotate.c small.c utils.c
+SRC = checks.c cost_rotate.c cost.c errors.c main.c positions.c push.c rev_rotate.c rotate.c small.c utils.c
 BUILD_DIR = build
 INCLUDE_DIR = includes
 INCLUDES = -I ./$(INCLUDE_DIR) -I ./$(LIB_DIR)/libft/includes

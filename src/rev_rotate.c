@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:12:04 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 06:27:31 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:29:02 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	ft_rrr(t_stack *stack)
 
 int	ft_do_rrr(t_stack *stack, int cost_a, int cost_b)
 {
-	int tmp;
-	
+	int	tmp;
+
 	tmp = 0;
 	while (cost_a < 0 && cost_b < 0)
 	{
