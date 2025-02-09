@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:53 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 21:39:38 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:48:06 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_split_stacks(char **argv, t_stack *stack)
 
 	i = 0;
 	split_argv = ft_new_split(argv[1], ' ');
+	ft_check_max_int(split_argv);
 	new_argv = malloc((stack->argc) * sizeof(char *) + 1);
 	if (!new_argv)
 		exit(EXIT_FAILURE);
@@ -57,6 +58,7 @@ void	ft_split_stacks(char **argv, t_stack *stack)
 
 void	ft_init_stacks(char **argv, t_stack *stack)
 {
+	ft_check_max_int(argv);
 	if (ft_duplicate(argv, stack->argc))
 		exit(EXIT_FAILURE);
 	ft_validate(argv, stack);

@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:47 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 21:38:49 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:51:56 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 void	ft_print_arr(int *arr, int size)
 {
+	int	i;
 	int	i;
 
 	i = 0;
@@ -25,6 +26,19 @@ void	ft_print_arr(int *arr, int size)
 	}
 	ft_printf("\n");
 } */
+void	ft_check_max_int(char **argv)
+{
+	i = 1;
+	while (argv[i])
+	{
+		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
+		{
+			ft_printf("Error: Overflow!\n");
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+}
 
 void	ft_free_errors(t_stack *stack)
 {

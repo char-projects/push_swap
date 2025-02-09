@@ -6,12 +6,15 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:39:16 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 21:40:01 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:52:17 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 # include "libft.h"
 
@@ -51,6 +54,7 @@ int		ft_payday(t_stack *stack, int i);
 int		ft_error(char *argv);
 int		ft_duplicate(char **argv, int size);
 void	ft_free_errors(t_stack *stack);
+void	ft_check_max_int(char **argv);
 
 // main
 void	ft_validate(char **argv, t_stack *stack);
