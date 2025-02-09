@@ -6,7 +6,7 @@
 #    By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 22:50:44 by cschnath          #+#    #+#              #
-#    Updated: 2025/02/09 15:19:04 by cschnath         ###   ########.fr        #
+#    Updated: 2025/02/09 17:05:38 by cschnath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,24 +74,31 @@ SRCBON	= ft_lstnew_bonus.c \
 
 OBJSBON	= ${SRCBON:.c=.o}
 
-all: $(NAME)
+# All target: Compile the library only if any object files are missing or outdated.
+all: $(LIB_DIR)/$(NAME)
 
-$(NAME): $(OBJS)
+# Creating the library in the specified lib directory
+$(LIB_DIR)/$(NAME): $(OBJS)
 	@mkdir -p $(LIB_DIR)
 	ar -rcs $(LIB_DIR)/$(NAME) $(OBJS)
 
+# Rule to compile .c files into .o files
 %.o : %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
-bonus: $(OBJSBON) $(OBJS)
-	ar -rcs $(NAME) $(OBJSBON) $(OBJS)
+# Bonus target: Add bonus object files to the library (if any are missing or outdated)
+bonus: $(OBJSBON)
+	ar -rcs $(LIB_DIR)/$(NAME) $(OBJSBON)
 
+# Clean up object files (both main and bonus)
 clean:
-	@rm -rf $(OBJS) $(OBJSBON)clean
+	@rm -f $(OBJS) $(OBJSBON)
 
+# Fully clean: remove both object files and the static library
 fclean: clean
 	@rm -f $(LIB_DIR)/$(NAME)
 
+# Rebuild everything from scratch
 re: fclean all
 
 .PHONY: all clean fclean re bonus
