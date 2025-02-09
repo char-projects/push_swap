@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 22:50:37 by cschnath          #+#    #+#             */
-/*   Updated: 2025/01/20 15:15:29 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:18:42 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ char				*ft_second_function(char *buf);
 
 // Custom fucntions
 void				ft_charppfree(char **str);
+void				ft_printcharpp(char **arr);
 
 #endif

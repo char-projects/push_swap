@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:53 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/09 14:48:06 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:46:01 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,31 @@ void	ft_split_stacks(char **argv, t_stack *stack)
 	i = 0;
 	split_argv = ft_new_split(argv[1], ' ');
 	ft_check_max_int(split_argv);
-	new_argv = malloc((stack->argc) * sizeof(char *) + 1);
+	new_argv = ft_calloc((stack->argc + 2), sizeof(char *));
 	if (!new_argv)
 		exit(EXIT_FAILURE);
-	new_argv[0] = argv[0];
-	while (i < stack->argc)
+	new_argv[0] = ft_strdup(argv[0]);
+	while (i < stack->argc - 1)
 	{
-		new_argv[i + 1] = split_argv[i];
+		new_argv[i + 1] = ft_strdup(split_argv[i]);
 		i++;
 	}
 	new_argv[stack->argc + 1] = NULL;
+	ft_charppfree(split_argv);
 	if (ft_duplicate(new_argv, stack->argc))
-		exit(EXIT_FAILURE);
+	{
+		ft_charppfree(new_argv);
+		ft_free_errors(stack);
+	}
 	ft_validate(new_argv, stack);
-	free(new_argv);
+	ft_charppfree(new_argv);
 }
 
 void	ft_init_stacks(char **argv, t_stack *stack)
 {
 	ft_check_max_int(argv);
 	if (ft_duplicate(argv, stack->argc))
-		exit(EXIT_FAILURE);
+		ft_free_errors(stack);
 	ft_validate(argv, stack);
 }
 

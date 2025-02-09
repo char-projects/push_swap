@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:12:29 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/08 21:30:27 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:28:59 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ long	ft_atol(const char *str)
 void	ft_calc_argc(t_stack *stack, int argc, char **argv)
 {
 	if (argc == 2)
-		stack->argc = ft_wordcount(argv[1], ' ');
+		stack->argc = ft_wordcount(argv[1], ' ') + 1;
 	else
 		stack->argc = argc;
 }

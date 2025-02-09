@@ -6,13 +6,12 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:47 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/09 14:54:47 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:50:14 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*
 void	ft_print_arr(int *arr, int size)
 {
 	int	i;
@@ -24,7 +23,8 @@ void	ft_print_arr(int *arr, int size)
 		i++;
 	}
 	ft_printf("\n");
-} */
+}
+
 void	ft_check_max_int(char **argv)
 {
 	int	i;
@@ -45,6 +45,7 @@ void	ft_free_errors(t_stack *stack)
 {
 	free(stack->a);
 	free(stack->b);
+	free(stack->sorted);
 	free(stack);
 	exit(EXIT_FAILURE);
 }
@@ -77,9 +78,9 @@ int	ft_duplicate(char **argv, int size)
 	int	j;
 
 	i = 1;
-	j = i + 1;
 	while (i < size)
 	{
+		j = i + 1;
 		while (j < size)
 		{
 			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))

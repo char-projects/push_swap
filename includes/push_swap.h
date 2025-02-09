@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:39:16 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/09 14:52:17 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 15:14:47 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_cheapest(t_stack *stack, int i);
 int		ft_payday(t_stack *stack, int i);
 
 // errors
-// void	ft_print_arr(int *arr, int size); // USE THIS FOR EVAL
+void	ft_print_arr(int *arr, int size); // USE THIS FOR EVAL
 int		ft_error(char *argv);
 int		ft_duplicate(char **argv, int size);
 void	ft_free_errors(t_stack *stack);
