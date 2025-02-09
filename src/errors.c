@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:47 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/09 14:51:56 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:54:47 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 void	ft_print_arr(int *arr, int size)
 {
-	int	i;
 	int	i;
 
 	i = 0;
@@ -28,6 +27,8 @@ void	ft_print_arr(int *arr, int size)
 } */
 void	ft_check_max_int(char **argv)
 {
+	int	i;
+
 	i = 1;
 	while (argv[i])
 	{
