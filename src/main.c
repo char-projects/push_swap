@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:53 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/09 16:25:09 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:53:54 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_stack	*ft_init(int argc, char **argv)
 	if (stack->argc < 2 || (stack->argc == 2 && !(*argv)[1]))
 	{
 		ft_printf("Error: Number of arguments!\n");
-		exit(EXIT_FAILURE);
+		ft_free_errors(stack);
 	}
 	if (argc == 2)
 		ft_split_stacks(argv, stack);
