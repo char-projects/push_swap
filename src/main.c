@@ -6,13 +6,13 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 01:11:53 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/09 15:46:01 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:25:09 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_validate(char **argv, t_stack *stack)
+void	ft_validate(char **argv, t_stack *stack, int flag)
 {
 	int		i;
 	long	nb;
@@ -21,7 +21,11 @@ void	ft_validate(char **argv, t_stack *stack)
 	while (i < stack->argc)
 	{
 		if (ft_error(argv[i]))
+		{
+			if (flag)
+				ft_charppfree(argv);
 			ft_free_errors(stack);
+		}
 		nb = ft_atol(argv[i]);
 		stack->a[i - 1] = nb;
 		i++;
@@ -39,10 +43,9 @@ void	ft_split_stacks(char **argv, t_stack *stack)
 
 	i = 0;
 	split_argv = ft_new_split(argv[1], ' ');
-	ft_check_max_int(split_argv);
+	if (ft_check_max_int(split_argv, 1))
+		ft_free_errors(stack);
 	new_argv = ft_calloc((stack->argc + 2), sizeof(char *));
-	if (!new_argv)
-		exit(EXIT_FAILURE);
 	new_argv[0] = ft_strdup(argv[0]);
 	while (i < stack->argc - 1)
 	{
@@ -56,16 +59,15 @@ void	ft_split_stacks(char **argv, t_stack *stack)
 		ft_charppfree(new_argv);
 		ft_free_errors(stack);
 	}
-	ft_validate(new_argv, stack);
+	ft_validate(new_argv, stack, 1);
 	ft_charppfree(new_argv);
 }
 
 void	ft_init_stacks(char **argv, t_stack *stack)
 {
-	ft_check_max_int(argv);
-	if (ft_duplicate(argv, stack->argc))
+	if (ft_check_max_int(argv, 0) || ft_duplicate(argv, stack->argc))
 		ft_free_errors(stack);
-	ft_validate(argv, stack);
+	ft_validate(argv, stack, 0);
 }
 
 t_stack	*ft_init(int argc, char **argv)

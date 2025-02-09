@@ -6,7 +6,7 @@
 /*   By: cschnath <cschnath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:39:16 by cschnath          #+#    #+#             */
-/*   Updated: 2025/02/09 15:14:47 by cschnath         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:24:24 by cschnath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	ft_print_arr(int *arr, int size); // USE THIS FOR EVAL
 int		ft_error(char *argv);
 int		ft_duplicate(char **argv, int size);
 void	ft_free_errors(t_stack *stack);
-void	ft_check_max_int(char **argv);
+int		ft_check_max_int(char **argv, int flag);
 
 // main
-void	ft_validate(char **argv, t_stack *stack);
+void	ft_validate(char **argv, t_stack *stack, int flag);
 void	ft_split_stacks(char **argv, t_stack *stack);
 void	ft_init_stacks(char **argv, t_stack *stack);
 t_stack	*ft_init(int argc, char **argv);
